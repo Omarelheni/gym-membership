@@ -1,0 +1,129 @@
+{
+  "ShowLogs": true,
+  "QMainWindow": [
+    {
+      "tittle": "Gym Membership App"
+    }
+  ],
+  "QSettings": [
+    {
+      "ThemeSettings": [
+        {
+          "CustomTheme": [
+            {
+              "Background-color": "#000000",
+              "Text-color": "#ffffff",
+              "Accent-color": "#ffffff",
+              "Icons-color": "#ffffff",
+              "Theme-name": "Default-theme",
+              "Default-Theme": true
+            }
+          ]
+        }
+      ],
+      "AppSettings": {
+        "OrginizationName": "Gym Membership App",
+        "ApplicationName": "Gym Membership App Company",
+        "OrginizationDormain": "Gym Membership App.org"
+      }
+    }
+  ],
+   "QPushButtonGroup": [
+        {
+          "Buttons": [
+                "homeBtn",
+                "accountBtn",
+                "reportsBtn",
+                "settingsBtn",
+                "helpBtn",
+                "aboutBtn"
+          ],
+          "Style":[
+              {
+                "Active": "background-color: #1b1b27;border-left: 3px solid #cc5bce;font-weight:bold;",
+                "NotActive": "background-color: transparent; border:none;"
+              }
+          ]
+	    }
+      ],
+  "QCustomSlideMenu": [{
+		"name": "leftMenu",
+		"defaultSize": [{
+			"width": 0,
+			"height": "parent"
+		}],
+		"collapsedSize": [{
+			"width": 0,
+			"height": "parent"
+		}],
+		"expandedSize": [{
+			"width": 200,
+			"height": "parent"
+		}],
+		"toggleButton": [{
+			"buttonName": "menuBtn",
+			"icons": [{
+				"whenMenuIsCollapsed": ":/feather/icons/feather/align-justify.png",
+				"whenMenuIsExpanded": ":/feather/icons/feather/chevron-left.png"
+			}]
+		}]
+  		}
+  		,
+		{
+		"name": "rightMenu",
+		"defaultSize": [{
+			"width": 0,
+			"height": "parent"
+		}],
+		"collapsedSize": [{
+			"width": 0,
+			"height": "parent"
+		}],
+		"expandedSize": [{
+			"width": 350,
+			"height": "parent"
+		}],
+		"toggleButton": [
+		{
+			"buttonName": "closeRightMenu",
+			"icons": [{
+				"whenMenuIsCollapsed": ":/feather/icons/feather/chevrons-right.png"
+			}]
+		}
+		],
+		"menuTransitionAnimation": [{
+			"animationDuration": 500,
+			"animationEasingCurve": "Linear"
+		}]
+	}],
+  "QCustomQStackedWidget":[
+		{
+			"name":"mainPages",
+			"transitionAnimation":[
+				{
+					"slide":[
+						{
+							"active":true,
+							"duration": 1100,
+							"direction": "horizontal",
+							"easingCurve": "OutBack"
+						}
+					]
+				}
+			],
+			"navigation":[
+				{
+					"navigationButtons":[
+						{
+							"homeBtn": "homePage",
+							"accountBtn": "accountPage",
+                            "settingsBtn": "settingsPage"
+						}
+					]
+				}
+			]
+
+		}
+	],
+  "QtBinding": "PySide6"
+}

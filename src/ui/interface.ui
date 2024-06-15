@@ -1,0 +1,985 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1143</width>
+    <height>777</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">*{
+border:none;
+background-color:transparent;
+background:transparent;
+padding:0;
+margin:0;
+color: #FFFFFF;
+}
+
+#centralwidget,#mainBodyContent,#homeBtn,QLineEdit,QDateEdit,QPushButton,Line,QComboBox,QSpinBox{
+background-color: #1b1b27
+}
+
+#header, #mainBody, #footer{
+background-color: #27263c
+}
+
+#pushButton_3{
+border:1px solid #cc5bce;
+border-radius:19px;
+text-align:center;
+}
+
+#addUserBtn{
+background-color: #cc5bce;
+border-radius: 10px;
+}
+
+
+QPushButton,#leftMenu{
+text-align:left;
+padding:5px 10px;
+border-top-left-radius: 10px;
+border-bottom-left-radius:10px;
+border-bottom-right-radius: 0;
+border-bottom-right-radius: 0;
+background-color:transparent;
+}
+
+#homeBtn{
+border-left: 3px solid #cc5bce;
+}
+
+QLineEdit,QDateEdit,QComboBox,QSpinBox{
+padding: 5px 10px;
+border-radius: 5px;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>10</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>50</number>
+    </property>
+    <item alignment="Qt::AlignmentFlag::AlignTop">
+     <widget class="QWidget" name="header" native="true">
+      <property name="styleSheet">
+       <string notr="true">#header, #mainBody{
+background-color: #27263c;
+}</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item alignment="Qt::AlignmentFlag::AlignLeft">
+        <widget class="QFrame" name="frame">
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item alignment="Qt::AlignmentFlag::AlignLeft">
+           <widget class="QPushButton" name="menuBtn">
+            <property name="font">
+             <font>
+              <pointsize>11</pointsize>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../Qss/icons/_icons.qrc">
+              <normaloff>:/feather/icons/feather/align-justify.png</normaloff>:/feather/icons/feather/align-justify.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item alignment="Qt::AlignmentFlag::AlignLeft">
+           <widget class="QLabel" name="label">
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+              <pointsize>10</pointsize>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#label{
+color:#ffffff;
+font-family:&quot;Poppins&quot;, sans-serif
+}</string>
+            </property>
+            <property name="text">
+             <string>DASHBOARD</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item alignment="Qt::AlignmentFlag::AlignRight">
+        <widget class="QFrame" name="frame_2">
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="pushButton_4">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../Qss/icons/_icons.qrc">
+              <normaloff>:/feather/icons/feather/search.png</normaloff>:/feather/icons/feather/search.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="icon">
+             <iconset resource="../Qss/icons/_icons.qrc">
+              <normaloff>:/feather/icons/feather/bell.png</normaloff>:/feather/icons/feather/bell.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../Qss/icons/_icons.qrc">
+              <normaloff>:/feather/icons/feather/activity.png</normaloff>:/feather/icons/feather/activity.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">#pushButton_3{
+				color:&quot;#FFFFFF&quot;;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../Qss/icons/_icons.qrc">
+              <normaloff>:/feather/icons/feather/user.png</normaloff>:/feather/icons/feather/user.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="mainBody" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>980</width>
+        <height>625</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#mainBody{
+background-color: #27263c;
+}</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>9</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QCustomSlideMenu" name="leftMenu" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>0</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#leftMenu{
+background-color: #27263c;
+}</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <property name="leftMargin">
+           <number>0</number>
+          </property>
+          <property name="topMargin">
+           <number>0</number>
+          </property>
+          <property name="rightMargin">
+           <number>0</number>
+          </property>
+          <property name="bottomMargin">
+           <number>20</number>
+          </property>
+          <item>
+           <widget class="QWidget" name="widget" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>596</height>
+             </size>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>10</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="QFrame" name="frame_3">
+               <property name="frameShape">
+                <enum>QFrame::Shape::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_5">
+                <property name="spacing">
+                 <number>10</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="homeBtn">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="text">
+                   <string>Home</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Qss/icons/_icons.qrc">
+                    <normaloff>:/feather/icons/feather/home.png</normaloff>:/feather/icons/feather/home.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="reportsBtn">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="text">
+                   <string>Reports</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Qss/icons/_icons.qrc">
+                    <normaloff>:/material_design/icons/material_design/print.png</normaloff>:/material_design/icons/material_design/print.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="accountBtn">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="text">
+                   <string>Account</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Qss/icons/_icons.qrc">
+                    <normaloff>:/feather/icons/feather/user.png</normaloff>:/feather/icons/feather/user.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer">
+               <property name="orientation">
+                <enum>Qt::Orientation::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QFrame" name="frame_4">
+               <property name="frameShape">
+                <enum>QFrame::Shape::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_6">
+                <property name="spacing">
+                 <number>10</number>
+                </property>
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="settingsBtn">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="text">
+                   <string>Settings </string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Qss/icons/_icons.qrc">
+                    <normaloff>:/feather/icons/feather/settings.png</normaloff>:/feather/icons/feather/settings.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="helpBtn">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="text">
+                   <string>Help</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Qss/icons/_icons.qrc">
+                    <normaloff>:/feather/icons/feather/help-circle.png</normaloff>:/feather/icons/feather/help-circle.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="aboutBtn">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="text">
+                   <string>About</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Qss/icons/_icons.qrc">
+                    <normaloff>:/feather/icons/feather/info.png</normaloff>:/feather/icons/feather/info.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="mainBodyContent" native="true">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <widget class="QCustomQStackedWidget" name="mainPages">
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
+            <widget class="QWidget" name="homePage">
+             <layout class="QVBoxLayout" name="verticalLayout_10">
+              <item>
+               <widget class="QWidget" name="widget_3" native="true">
+                <layout class="QVBoxLayout" name="verticalLayout_11">
+                 <item>
+                  <widget class="QFrame" name="frame_6">
+                   <property name="frameShape">
+                    <enum>QFrame::Shape::StyledPanel</enum>
+                   </property>
+                   <property name="frameShadow">
+                    <enum>QFrame::Shadow::Raised</enum>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_6">
+                    <item>
+                     <widget class="QLabel" name="label_4">
+                      <property name="font">
+                       <font>
+                        <pointsize>17</pointsize>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>Les Membres</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item alignment="Qt::AlignmentFlag::AlignRight">
+                     <widget class="QPushButton" name="showUserFormBtn">
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="text">
+                       <string>Ajouter Utilisateur</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="../Qss/icons/_icons.qrc">
+                        <normaloff>:/font_awesome/regular/icons/font_awesome/regular/square-plus.png</normaloff>:/font_awesome/regular/icons/font_awesome/regular/square-plus.png</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>20</width>
+                        <height>20</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QTableWidget" name="tableWidgetUsers">
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+background-color: #cc5bce;
+padding: 5px 10px;
+border-radius: 5px;
+
+}</string>
+                   </property>
+                   <property name="frameShape">
+                    <enum>QFrame::Shape::StyledPanel</enum>
+                   </property>
+                   <property name="lineWidth">
+                    <number>1</number>
+                   </property>
+                   <property name="gridStyle">
+                    <enum>Qt::PenStyle::SolidLine</enum>
+                   </property>
+                   <property name="sortingEnabled">
+                    <bool>true</bool>
+                   </property>
+                   <attribute name="horizontalHeaderCascadingSectionResizes">
+                    <bool>false</bool>
+                   </attribute>
+                   <attribute name="horizontalHeaderDefaultSectionSize">
+                    <number>140</number>
+                   </attribute>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+            <widget class="QWidget" name="accountPage">
+             <widget class="QLabel" name="label_3">
+              <property name="geometry">
+               <rect>
+                <x>330</x>
+                <y>146</y>
+                <width>191</width>
+                <height>71</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>17</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Account Page</string>
+              </property>
+             </widget>
+            </widget>
+            <widget class="QWidget" name="settingsPage">
+             <widget class="QLabel" name="label_5">
+              <property name="geometry">
+               <rect>
+                <x>190</x>
+                <y>150</y>
+                <width>191</width>
+                <height>81</height>
+               </rect>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>17</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>settings Page</string>
+              </property>
+             </widget>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCustomSlideMenu" name="rightMenu" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>350</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <item alignment="Qt::AlignmentFlag::AlignHCenter|Qt::AlignmentFlag::AlignTop">
+           <widget class="QWidget" name="widget_2" native="true">
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>247</height>
+             </size>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <widget class="QWidget" name="widget_4" native="true">
+               <property name="styleSheet">
+                <string notr="true">QPushButton {
+background-color: #1b1b27;
+border-radius: 10px;
+}</string>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_8">
+                <item alignment="Qt::AlignmentFlag::AlignLeft">
+                 <widget class="QPushButton" name="closeRightMenu">
+                  <property name="text">
+                   <string>Fermer</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../Qss/icons/_icons.qrc">
+                    <normaloff>:/feather/icons/feather/chevrons-right.png</normaloff>:/feather/icons/feather/chevrons-right.png</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>18</width>
+                    <height>18</height>
+                   </size>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item alignment="Qt::AlignmentFlag::AlignHCenter">
+              <widget class="QLabel" name="label_2">
+               <property name="minimumSize">
+                <size>
+                 <width>70</width>
+                 <height>70</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>70</width>
+                 <height>70</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap resource="../Qss/icons/_icons.qrc">:/feather/icons/feather/edit.png</pixmap>
+               </property>
+               <property name="scaledContents">
+                <bool>true</bool>
+               </property>
+               <property name="wordWrap">
+                <bool>false</bool>
+               </property>
+               <property name="openExternalLinks">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QFrame" name="frame_5">
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+padding: 5px 10px;
+border-radius: 5px;
+background-color: #1b1b27
+}</string>
+               </property>
+               <property name="frameShape">
+                <enum>QFrame::Shape::StyledPanel</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Shadow::Raised</enum>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_9">
+                <item>
+                 <widget class="QLineEdit" name="firstName">
+                  <property name="text">
+                   <string>Omar</string>
+                  </property>
+                  <property name="readOnly">
+                   <bool>false</bool>
+                  </property>
+                  <property name="placeholderText">
+                   <string>Prenom</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="lastName">
+                  <property name="text">
+                   <string>Elheni</string>
+                  </property>
+                  <property name="placeholderText">
+                   <string>Nom</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="email">
+                  <property name="text">
+                   <string>elheniomar@gmail.com</string>
+                  </property>
+                  <property name="placeholderText">
+                   <string>Email</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="phoneNb">
+                  <property name="text">
+                   <string>98785465</string>
+                  </property>
+                  <property name="placeholderText">
+                   <string>Numero Telephone</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="address">
+                  <property name="text">
+                   <string>Ariana</string>
+                  </property>
+                  <property name="placeholderText">
+                   <string>Adresse</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QDateEdit" name="birthDate">
+                  <property name="specialValueText">
+                   <string/>
+                  </property>
+                  <property name="calendarPopup">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QFrame" name="imageFrame">
+                  <property name="frameShape">
+                   <enum>QFrame::Shape::StyledPanel</enum>
+                  </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Shadow::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_7">
+                   <item>
+                    <widget class="QPushButton" name="imageBtn">
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="text">
+                      <string>Choisir Image</string>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../Qss/icons/_icons.qrc">
+                       <normaloff>:/feather/icons/feather/image.png</normaloff>:/feather/icons/feather/image.png</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="imageLabel">
+                     <property name="text">
+                      <string/>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="Line" name="subLine">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Horizontal</enum>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QComboBox" name="subType">
+                  <property name="placeholderText">
+                   <string>Type d'abonnement</string>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>Abonnement mensuel</string>
+                   </property>
+                   <property name="icon">
+                    <iconset theme="#000000"/>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Abonnement trimestriel</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Abonnement semestriel</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Abonnement annuel</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Autre</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QWidget" name="subDurationW" native="true">
+                  <layout class="QHBoxLayout" name="horizontalLayout_10">
+                   <item>
+                    <widget class="QLabel" name="label_7">
+                     <property name="text">
+                      <string>Durée en mois :</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QSpinBox" name="subDuration"/>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QWidget" name="widget_5" native="true">
+                  <layout class="QHBoxLayout" name="horizontalLayout_9">
+                   <item>
+                    <widget class="QLabel" name="labeldate">
+                     <property name="text">
+                      <string>Date de début :</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QDateEdit" name="startDate">
+                     <property name="calendarPopup">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item alignment="Qt::AlignmentFlag::AlignHCenter">
+              <widget class="QPushButton" name="addUserBtn">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
+               <property name="text">
+                <string>Add User</string>
+               </property>
+               <property name="icon">
+                <iconset resource="../Qss/icons/_icons.qrc">
+                 <normaloff>:/feather/icons/feather/file-plus.png</normaloff>:/feather/icons/feather/file-plus.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="controlErrorsUser">
+            <property name="styleSheet">
+             <string notr="true">#controlErrorsUser{
+  text-align:center
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop</set>
+            </property>
+            <property name="indent">
+             <number>-1</number>
+            </property>
+            <property name="openExternalLinks">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="footer" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item alignment="Qt::AlignmentFlag::AlignHCenter">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Copyright 2024</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomSlideMenu</class>
+   <extends>QWidget</extends>
+   <header location="global">Custom_Widgets.QCustomSlideMenu.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QCustomQStackedWidget</class>
+   <extends>QStackedWidget</extends>
+   <header location="global">Custom_Widgets.QCustomQStackedWidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../Qss/icons/_icons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

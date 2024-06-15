@@ -1,0 +1,62 @@
+{
+  "QPushButton": [
+    {
+      "name": "menuBtn",
+      "icon": "Qss/icons/icons/feather/align-justify.png"
+    },
+    {
+      "name": "pushButton_4",
+      "icon": "Qss/icons/icons/feather/search.png"
+    },
+    {
+      "name": "pushButton",
+      "icon": "Qss/icons/icons/feather/bell.png"
+    },
+    {
+      "name": "pushButton_2",
+      "icon": "Qss/icons/icons/feather/activity.png"
+    },
+    {
+      "name": "pushButton_3",
+      "icon": "Qss/icons/icons/feather/user.png"
+    },
+    {
+      "name": "homeBtn",
+      "icon": "Qss/icons/icons/feather/home.png"
+    },
+    {
+      "name": "reportsBtn",
+      "icon": "Qss/icons/icons/material_design/print.png"
+    },
+    {
+      "name": "accountBtn",
+      "icon": "Qss/icons/icons/feather/user.png"
+    },
+    {
+      "name": "settingsBtn",
+      "icon": "Qss/icons/icons/feather/settings.png"
+    },
+    {
+      "name": "helpBtn",
+      "icon": "Qss/icons/icons/feather/help-circle.png"
+    },
+    {
+      "name": "aboutBtn",
+      "icon": "Qss/icons/icons/feather/info.png"
+    },
+    {
+      "name": "showUserFormBtn",
+      "icon": "Qss/icons/regular/icons/font_awesome/regular/square-plus.png"
+    },
+    {
+      "name": "addUserBtn",
+      "icon": "Qss/icons/icons/feather/file-plus.png"
+    }
+  ],
+  "QLabel": [
+    {
+      "name": "label_2",
+      "pixmap": "Qss/icons/icons/feather/edit.png"
+    }
+  ]
+}
