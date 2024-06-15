@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'designeruoCwZR.ui'
+## Form generated from reading UI file 'untitledmJaVbI.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.0
 ##
@@ -48,22 +48,6 @@ class Ui_Dialog(object):
         self.widget.setObjectName(u"widget")
         self.verticalLayout_2 = QVBoxLayout(self.widget)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.widget_2 = QWidget(self.widget)
-        self.widget_2.setObjectName(u"widget_2")
-        self.horizontalLayout = QHBoxLayout(self.widget_2)
-        self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.label = QLabel(self.widget_2)
-        self.label.setObjectName(u"label")
-
-        self.horizontalLayout.addWidget(self.label)
-
-        self.lineEdit = QLineEdit(self.widget_2)
-        self.lineEdit.setObjectName(u"lineEdit")
-
-        self.horizontalLayout.addWidget(self.lineEdit)
-
-
-        self.verticalLayout_2.addWidget(self.widget_2, 0, Qt.AlignmentFlag.AlignTop)
 
 
         self.verticalLayout.addWidget(self.widget)
@@ -82,9 +66,37 @@ class Ui_Dialog(object):
 
         QMetaObject.connectSlotsByName(Dialog)
     # setupUi
+    def addFieldToWidget(self,ui_name,table_name,value="",ui_label=""):
+        label_ui_name = ui_name+'Label'
+        text_ui_name = ui_name+'Text'
+        widget_ui_name = table_name + 'Widget'
+        horizontal_layout_ui_name = ui_name+ "HorizontalLayout"
+
+        setattr(self,widget_ui_name,QWidget(self.widget))
+        getattr(self,widget_ui_name).setObjectName(widget_ui_name)
+
+        setattr(self, horizontal_layout_ui_name,QHBoxLayout(getattr(self,widget_ui_name)))
+        getattr(self,horizontal_layout_ui_name).setObjectName(horizontal_layout_ui_name)
+
+        setattr(self, label_ui_name,QLabel(getattr(self,widget_ui_name)))
+        getattr(self,label_ui_name).setObjectName(label_ui_name)
+
+
+        getattr(self,horizontal_layout_ui_name).addWidget(getattr(self,label_ui_name))
+
+        setattr(self, text_ui_name,QLineEdit(getattr(self,widget_ui_name)))
+        getattr(self,text_ui_name).setObjectName(text_ui_name)
+        getattr(self,text_ui_name).setReadOnly(True)
+
+        getattr(self,horizontal_layout_ui_name).addWidget(getattr(self,text_ui_name))
+
+        self.verticalLayout_2.addWidget(getattr(self,widget_ui_name), 0, Qt.AlignmentFlag.AlignTop)
+
+        getattr(self,label_ui_name).setText(QCoreApplication.translate("Dialog", ui_label, None))
+        getattr(self,text_ui_name).setText(QCoreApplication.translate("Dialog", value, None))
+
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
-        self.label.setText(QCoreApplication.translate("Dialog", u"TextLabel", None))
     # retranslateUi
 

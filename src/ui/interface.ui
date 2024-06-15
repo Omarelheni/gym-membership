@@ -563,47 +563,6 @@ border-radius: 5px;
                    <attribute name="horizontalHeaderDefaultSectionSize">
                     <number>140</number>
                    </attribute>
-                   <column>
-                    <property name="text">
-                     <string>id</string>
-                    </property>
-                   </column>
-                   <column>
-                    <property name="text">
-                     <string>Image</string>
-                    </property>
-                   </column>
-                   <column>
-                    <property name="text">
-                     <string>Prenom</string>
-                    </property>
-                   </column>
-                   <column>
-                    <property name="text">
-                     <string>Nom</string>
-                    </property>
-                   </column>
-                   <column>
-                    <property name="text">
-                     <string>Email</string>
-                    </property>
-                   </column>
-                   <column>
-                    <property name="text">
-                     <string>Numero Telephone</string>
-                    </property>
-                    <property name="font">
-                     <font>
-                      <pointsize>11</pointsize>
-                      <bold>false</bold>
-                     </font>
-                    </property>
-                   </column>
-                   <column>
-                    <property name="text">
-                     <string>Actions</string>
-                    </property>
-                   </column>
                   </widget>
                  </item>
                 </layout>

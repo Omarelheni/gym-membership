@@ -5,10 +5,12 @@ from sqlite3 import Error
 
 from PySide6.QtWidgets import QMessageBox
 
+from ...models.abstract.fields import Field
 from ...models.abstract.foreign_key import ForeignKey
+from ...utils import show_popup
 
 
-class SQLLiteFunctions():
+class SQLLiteFunctions:
     db_file = os.path.abspath(os.path.join(os.path.dirname(__file__), 'database/gym_membership_db.db'))
 
     def create_connection(self):
@@ -20,7 +22,6 @@ class SQLLiteFunctions():
         return conn
 
     def execute_function(self, sql_query, return_response=False, commit=False, values=None, fetch_last_inserted=False):
-
         if self.db_file:
             conn = self.create_connection()
             try:
@@ -41,12 +42,13 @@ class SQLLiteFunctions():
                 conn.close()  # Ensure the connection is closed
             return True
 
-        print('Please set the db File !')
+        print('Please set the db file!')
         return False
 
     def create_table_sql(self, model_class):
         fields = model_class.get_fields()
-        columns = [f"{field.database_name} {field.database_type}" for field in fields if field.database_name != 'ID' or isinstance(field, ForeignKey)]
+        columns = [f"{field.database_name} {field.database_type}" for field in fields if
+                   field.database_name != 'ID' or isinstance(field, ForeignKey)]
         foreign_keys = [field for field in fields if isinstance(field, ForeignKey)]
 
         # Create foreign key constraints
@@ -57,10 +59,10 @@ class SQLLiteFunctions():
 
         columns_string = ", ".join(columns + foreign_key_constraints)
         create_table_query = f"CREATE TABLE {model_class.table_name} (ID INTEGER PRIMARY KEY AUTOINCREMENT, {columns_string});"
-        print('create_table_query ==>',create_table_query)
+        print('create_table_query ==>', create_table_query)
 
         if self.execute_function(create_table_query):
-            print('Tables created successfully !')
+            print('Table created successfully!')
         else:
             print('Error in creating table!')
 
@@ -85,9 +87,9 @@ class SQLLiteFunctions():
 
         if field_to_add is not None:
             # Filter the initial fields based on field_to_add
-            inital_fields = [field for key, field in model_class.__dict__.items() if key in field_to_add]
-            database_names = [getattr(field, 'database_name') for field in inital_fields]
-            values = [getattr(field, 'value') for field in inital_fields]
+            initial_fields = [field for key, field in model_class.__dict__.items() if key in field_to_add]
+            database_names = [getattr(field, 'database_name') for field in initial_fields]
+            values = [getattr(field, 'value') for field in initial_fields]
 
         # Ensure we have the same number of database names and values
         if len(database_names) != len(values):
@@ -96,11 +98,36 @@ class SQLLiteFunctions():
         # Construct the query parts
         placeholders = ','.join(['?'] * len(values))
         database_names_part_query = f"({','.join(database_names)})"
-        insert_user = f"""
+        insert_item = f"""
         INSERT INTO {model_class.table_name} {database_names_part_query} VALUES ({placeholders});
         """
 
-        return self.execute_function(insert_user, commit=True, values=values,fetch_last_inserted=True)
+        return self.execute_function(insert_item, commit=True, values=values, fetch_last_inserted=True)
+
+    def update_item_sql(self, model_class, item_id, fields_to_update=None):
+        # Get field names and values
+        database_names = model_class.get_fields_attribute_value('database_name')
+        values = model_class.get_fields_attribute_value('value')
+
+        if fields_to_update is not None:
+            # Filter fields based on fields_to_update
+            update_fields = [field for key, field in model_class.__dict__.items() if key in fields_to_update]
+            database_names = [getattr(field, 'database_name') for field in update_fields]
+            values = [getattr(field, 'value') for field in update_fields]
+
+        # Ensure we have the same number of database names and values
+        if len(database_names) != len(values):
+            raise ValueError("Mismatch between database field names and values")
+
+        # Construct the query parts
+        set_clause = ', '.join([f"{name} = ?" for name in database_names])
+        update_query = f"""
+        UPDATE {model_class.table_name} SET {set_clause} WHERE ID = ?;
+        """
+
+        values.append(item_id)  # Add the item ID to the values list
+
+        return self.execute_function(update_query, commit=True, values=values)
 
 
 class ModelOperations(SQLLiteFunctions):
@@ -111,55 +138,80 @@ class ModelOperations(SQLLiteFunctions):
     ui_table_columns = None
     ui_table_with_actions = True
     ui_add_form_columns = None
+    fields_to_update = None
+    main = None
 
     def __init__(self):
         super().__init__()
-        self.model_instance = self.model_class()  # Create an instance of User when needed
-
+        self.model_instance = self.model_class()  # Create an instance of the model class when needed
 
     def create_table(self):
         self.create_table_sql(self.model_instance)
 
-    def get_items(self, columns=None):
-
+    def get_items(self):
+        columns = [key for key, value in self.model_instance.__dict__.items() if isinstance(value, Field)]
         raw_items = self.get_items_sql(columns, self.model_instance)
         # Map the list of values to a list of instance type Field
         items = []
         for raw_item in raw_items:
             model_class_new = self.model_class()
             for index, raw_value in enumerate(raw_item):
-                field = getattr(model_class_new, self.ui_table_columns[index])
+                field = getattr(model_class_new, columns[index])
                 field.value = raw_value
 
             items.append(model_class_new)
 
         return items
 
-    def add_item(self, uifunction):
+    def add_item(self):
+        self.model_instance.set_values_from_ui(main=self.main)
         # Perform validation checks
         errors = self.model_instance.validate_item_inputs()
 
         if errors:
-            uifunction.main.ui.controlErrorsUser.setText("\n".join(errors))
-            show_popup("\n".join(errors),"error")
+            self.main.ui.controlErrorsUser.setText("\n".join(errors))
+            show_popup("\n".join(errors), "error")
             return
         else:
-            uifunction.main.ui.controlErrorsUser.setText("")
+            self.main.ui.controlErrorsUser.setText("")
 
+        try:
+            result = self.add_item_sql(self.model_instance, self.fields_to_update)
+            if result:
+                self.model_instance.set_ui_values_free(self.main.ui)
+                self.display_items()
+                self.show_add_success_message()
+                return result
+        except:
+            show_popup("Failed to add item")
 
+    def update_item(self):
+        self.model_instance.set_values_from_ui(main=self.main)
+        # Perform validation checks
+        errors = self.model_instance.validate_item_inputs()
 
-        result = self.add_item_sql(self.model_instance, self.ui_add_form_columns)
-        if result :
-            self.model_instance.set_ui_values_free(uifunction.main.ui)
-            self.display_items(uifunction.main)
-            self.show_succes_message()
-            return result
+        if errors:
+            self.main.ui.controlErrorsUser.setText("\n".join(errors))
+            show_popup("\n".join(errors), "error")
+            return
+        else:
+            self.main.ui.controlErrorsUser.setText("")
 
+        try:
+            result = self.update_item_sql(self.model_instance, self.model_instance.id.value, self.ui_add_form_columns)
+            if result:
+                self.display_items()
+                self.show_update_success_message()
+                return result
+        except:
+            show_popup("Failed to update item")
 
-
-
-    def display_items(self, main):
+    def display_items(self):
+        # Your implementation to display items in the UI
         pass
 
-    def show_succes_message(self):
-        pass
+    def show_add_success_message(self):
+        show_popup("Item added successfully", "success")
+
+    def show_update_success_message(self):
+        show_popup("Item updated successfully", "success")

@@ -83,12 +83,7 @@
 			"width": 350,
 			"height": "parent"
 		}],
-		"toggleButton": [{
-			"buttonName": "showUserFormBtn",
-			"icons": [{
-				"whenMenuIsCollapsed": ":/feather/icons/feather/align-justify.png"
-			}]
-		},
+		"toggleButton": [
 		{
 			"buttonName": "closeRightMenu",
 			"icons": [{

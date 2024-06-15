@@ -23,6 +23,6 @@ class Subscription(Model):
 
         self.member = ForeignKey(User,"MEMBER",table_relation_id_key = 'id')
 
-    def validate_item_inputs(self):
-        errors = []
-        return errors
+    @staticmethod
+    def validate_item_inputs():
+        return []

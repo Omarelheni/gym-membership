@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfaceZjxbmY.ui'
+## Form generated from reading UI file 'interfaceuGyqSf.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.0
 ##
@@ -23,6 +23,7 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QFrame,
 
 from Custom_Widgets.QCustomQStackedWidget import QCustomQStackedWidget
 from Custom_Widgets.QCustomSlideMenu import QCustomSlideMenu
+from . import  icons_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -337,23 +338,6 @@ class Ui_MainWindow(object):
         self.verticalLayout_11.addWidget(self.frame_6)
 
         self.tableWidgetUsers = QTableWidget(self.widget_3)
-        if (self.tableWidgetUsers.columnCount() < 7):
-            self.tableWidgetUsers.setColumnCount(7)
-        __qtablewidgetitem = QTableWidgetItem()
-        self.tableWidgetUsers.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        self.tableWidgetUsers.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.tableWidgetUsers.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.tableWidgetUsers.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.tableWidgetUsers.setHorizontalHeaderItem(4, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        __qtablewidgetitem5.setFont(font);
-        self.tableWidgetUsers.setHorizontalHeaderItem(5, __qtablewidgetitem5)
-        __qtablewidgetitem6 = QTableWidgetItem()
-        self.tableWidgetUsers.setHorizontalHeaderItem(6, __qtablewidgetitem6)
         self.tableWidgetUsers.setObjectName(u"tableWidgetUsers")
         self.tableWidgetUsers.setStyleSheet(u"QPushButton{\n"
 "background-color: #cc5bce;\n"
@@ -627,33 +611,14 @@ class Ui_MainWindow(object):
         self.aboutBtn.setText(QCoreApplication.translate("MainWindow", u"About", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Les Membres", None))
         self.showUserFormBtn.setText(QCoreApplication.translate("MainWindow", u"Ajouter Utilisateur", None))
-        ___qtablewidgetitem = self.tableWidgetUsers.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"id", None));
-        ___qtablewidgetitem1 = self.tableWidgetUsers.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Image", None));
-        ___qtablewidgetitem2 = self.tableWidgetUsers.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Prenom", None));
-        ___qtablewidgetitem3 = self.tableWidgetUsers.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Nom", None));
-        ___qtablewidgetitem4 = self.tableWidgetUsers.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Email", None));
-        ___qtablewidgetitem5 = self.tableWidgetUsers.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Numero Telephone", None));
-        ___qtablewidgetitem6 = self.tableWidgetUsers.horizontalHeaderItem(6)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"Actions", None));
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Account Page", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"settings Page", None))
         self.closeRightMenu.setText(QCoreApplication.translate("MainWindow", u"Fermer", None))
         self.label_2.setText("")
-        self.firstName.setText(QCoreApplication.translate("MainWindow", u"Omar", None))
         self.firstName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Prenom", None))
-        self.lastName.setText(QCoreApplication.translate("MainWindow", u"Elheni", None))
         self.lastName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Nom", None))
-        self.email.setText(QCoreApplication.translate("MainWindow", u"elheniomar@gmail.com", None))
         self.email.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Email", None))
-        self.phoneNb.setText(QCoreApplication.translate("MainWindow", u"98785465", None))
         self.phoneNb.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Numero Telephone", None))
-        self.address.setText(QCoreApplication.translate("MainWindow", u"Ariana", None))
         self.address.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Adresse", None))
         self.birthDate.setSpecialValueText("")
         self.imageBtn.setText(QCoreApplication.translate("MainWindow", u"Choisir Image", None))
@@ -667,7 +632,7 @@ class Ui_MainWindow(object):
         self.subType.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Type d'abonnement", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Dur\u00e9e en mois :", None))
         self.labeldate.setText(QCoreApplication.translate("MainWindow", u"Date de d\u00e9but :", None))
-        self.addUserBtn.setText(QCoreApplication.translate("MainWindow", u"Add User", None))
+        self.addUserBtn.setText(QCoreApplication.translate("MainWindow", u"Ajouter un membre", None))
         self.controlErrorsUser.setText("")
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Copyright 2024", None))
     # retranslateUi
