@@ -59,7 +59,6 @@ class SQLLiteFunctions:
 
         columns_string = ", ".join(columns + foreign_key_constraints)
         create_table_query = f"CREATE TABLE {model_class.table_name} (ID INTEGER PRIMARY KEY AUTOINCREMENT, {columns_string});"
-        print('create_table_query ==>', create_table_query)
 
         if self.execute_function(create_table_query):
             print('Table created successfully!')
@@ -129,6 +128,54 @@ class SQLLiteFunctions:
 
         return self.execute_function(update_query, commit=True, values=values)
 
+    def delete_item_sql(self, model_instance):
+        if not model_instance:
+            raise ValueError("Model class not provided")
+
+        pk_field_database_name = model_instance.pk_field.database_name
+        # Construct the delete query
+        delete_query = f"DELETE FROM {model_instance.table_name} WHERE {pk_field_database_name} = ?;"
+
+        try:
+            return self.execute_function(delete_query, commit=True, values=[model_instance.pk_field.value])
+        except:
+            show_popup("Failed to delete item", "error")
+
+    def search_items_sql(self, model_class=None, conditions=None, condition_operator='AND', columns=None,
+                         order_by=None):
+        order_by_database = getattr(model_class,order_by).database_name if order_by else None
+
+        if not model_class:
+            raise ValueError("Model class not provided")
+
+        if not isinstance(conditions, dict):
+            raise ValueError("Conditions should be a dictionary")
+
+        fields_and_keys = model_class.__dict__
+
+        if columns:
+            columns_sql = [fields_and_keys[key].database_name for key in columns if key in fields_and_keys]
+        else:
+            columns_sql = [field.database_name for field in model_class.get_fields()]
+
+        columns_sql_string = ','.join(columns_sql) if columns else '*'
+
+        condition_strings = []
+        condition_values = []
+        for column, value in conditions.items():
+            if column in fields_and_keys:
+                condition_strings.append(f"{fields_and_keys[column].database_name} = ?")
+                condition_values.append(value)
+
+        condition_string = f' {condition_operator} '.join(condition_strings)
+        where_clause = f" WHERE {condition_string}" if condition_string else ''
+
+        order_clause = f" ORDER BY {order_by_database}" if order_by_database else ''
+
+        get_items_query = f"SELECT {columns_sql_string} FROM {model_class.table_name}{where_clause}{order_clause};"
+        raw_items = self.execute_function(get_items_query, return_response=True, values=condition_values)
+        return raw_items
+
 
 class ModelOperations(SQLLiteFunctions):
     create_table_query = ""
@@ -163,8 +210,27 @@ class ModelOperations(SQLLiteFunctions):
 
         return items
 
-    def add_item(self):
-        self.model_instance.set_values_from_ui(main=self.main)
+    def get_search_items(self, conditions, condition_operator='AND',order_by=None):
+        columns = [key for key, value in self.model_instance.__dict__.items() if isinstance(value, Field)]
+
+        raw_items = self.search_items_sql(self.model_instance, conditions, condition_operator, columns,order_by)
+        # Map the list of values to a list of instance type Field
+        items = []
+        for raw_item in raw_items:
+            model_class_new = self.model_class()
+            for index, raw_value in enumerate(raw_item):
+                field = getattr(model_class_new, columns[index])
+                field.value = raw_value
+
+            items.append(model_class_new)
+
+        return items
+
+    def add_item(self,ui=None):
+        if ui is None :
+            ui = self.main.ui
+
+        self.model_instance.set_values_from_ui(ui=ui)
         # Perform validation checks
         errors = self.model_instance.validate_item_inputs()
 
@@ -173,12 +239,13 @@ class ModelOperations(SQLLiteFunctions):
             show_popup("\n".join(errors), "error")
             return
         else:
-            self.main.ui.controlErrorsUser.setText("")
+            if getattr(ui,'controlErrorsUser',None):
+                ui.controlErrorsUser.setText("")
 
         try:
             result = self.add_item_sql(self.model_instance, self.fields_to_update)
             if result:
-                self.model_instance.set_ui_values_free(self.main.ui)
+                self.model_instance.set_ui_values_free(ui)
                 self.display_items()
                 self.show_add_success_message()
                 return result
@@ -186,7 +253,7 @@ class ModelOperations(SQLLiteFunctions):
             show_popup("Failed to add item")
 
     def update_item(self):
-        self.model_instance.set_values_from_ui(main=self.main)
+        self.model_instance.set_values_from_ui(ui=self.main.ui)
         # Perform validation checks
         errors = self.model_instance.validate_item_inputs()
 
@@ -206,12 +273,22 @@ class ModelOperations(SQLLiteFunctions):
         except:
             show_popup("Failed to update item")
 
+    def delete_item(self, instance):
+        result = self.delete_item_sql(instance)
+        if result:
+            self.display_items()
+            self.show_delete_success_message()
+            return result
+
     def display_items(self):
         # Your implementation to display items in the UI
         pass
 
     def show_add_success_message(self):
-        show_popup("Item added successfully", "success")
+        show_popup("Item added successfully")
 
     def show_update_success_message(self):
-        show_popup("Item updated successfully", "success")
+        show_popup("Item updated successfully")
+
+    def show_delete_success_message(self):
+        show_popup("Item deleted successfully")

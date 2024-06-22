@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="feather">
+    <file>special/valid.png</file>
+    <file>special/not_valid.png</file>
     <file>icons/feather/book.png</file>
     <file>icons/feather/list.png</file>
     <file>icons/feather/phone-missed.png</file>

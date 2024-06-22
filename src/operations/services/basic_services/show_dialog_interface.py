@@ -66,34 +66,39 @@ class Ui_Dialog(object):
 
         QMetaObject.connectSlotsByName(Dialog)
     # setupUi
-    def addFieldToWidget(self,ui_name,table_name,value="",ui_label=""):
-        label_ui_name = ui_name+'Label'
-        text_ui_name = ui_name+'Text'
-        widget_ui_name = table_name + 'Widget'
-        horizontal_layout_ui_name = ui_name+ "HorizontalLayout"
+    def addFieldToWidget(self,ui_name="",table_name="",value="",ui_label="",type="Text",widget=None):
+        if type =="Text":
+            label_ui_name = ui_name+'Label'
+            text_ui_name = ui_name+'Text'
+            widget_ui_name = table_name + 'Widget'
+            horizontal_layout_ui_name = ui_name+ "HorizontalLayout"
 
-        setattr(self,widget_ui_name,QWidget(self.widget))
-        getattr(self,widget_ui_name).setObjectName(widget_ui_name)
+            setattr(self,widget_ui_name,QWidget(self.widget))
+            getattr(self,widget_ui_name).setObjectName(widget_ui_name)
 
-        setattr(self, horizontal_layout_ui_name,QHBoxLayout(getattr(self,widget_ui_name)))
-        getattr(self,horizontal_layout_ui_name).setObjectName(horizontal_layout_ui_name)
+            setattr(self, horizontal_layout_ui_name,QHBoxLayout(getattr(self,widget_ui_name)))
+            getattr(self,horizontal_layout_ui_name).setObjectName(horizontal_layout_ui_name)
 
-        setattr(self, label_ui_name,QLabel(getattr(self,widget_ui_name)))
-        getattr(self,label_ui_name).setObjectName(label_ui_name)
+            setattr(self, label_ui_name,QLabel(getattr(self,widget_ui_name)))
+            getattr(self,label_ui_name).setObjectName(label_ui_name)
 
 
-        getattr(self,horizontal_layout_ui_name).addWidget(getattr(self,label_ui_name))
+            getattr(self,horizontal_layout_ui_name).addWidget(getattr(self,label_ui_name))
 
-        setattr(self, text_ui_name,QLineEdit(getattr(self,widget_ui_name)))
-        getattr(self,text_ui_name).setObjectName(text_ui_name)
-        getattr(self,text_ui_name).setReadOnly(True)
+            setattr(self, text_ui_name,QLineEdit(getattr(self,widget_ui_name)))
+            getattr(self,text_ui_name).setObjectName(text_ui_name)
+            getattr(self,text_ui_name).setReadOnly(True)
 
-        getattr(self,horizontal_layout_ui_name).addWidget(getattr(self,text_ui_name))
+            getattr(self,horizontal_layout_ui_name).addWidget(getattr(self,text_ui_name))
 
-        self.verticalLayout_2.addWidget(getattr(self,widget_ui_name), 0, Qt.AlignmentFlag.AlignTop)
+            self.verticalLayout_2.addWidget(getattr(self,widget_ui_name), 0, Qt.AlignmentFlag.AlignTop)
 
-        getattr(self,label_ui_name).setText(QCoreApplication.translate("Dialog", ui_label, None))
-        getattr(self,text_ui_name).setText(QCoreApplication.translate("Dialog", value, None))
+            getattr(self,label_ui_name).setText(QCoreApplication.translate("Dialog", ui_label, None))
+            getattr(self,text_ui_name).setText(QCoreApplication.translate("Dialog", value, None))
+        elif type=="Image":
+            print('hey inn ')
+            self.verticalLayout_2.addWidget(widget, 0, Qt.AlignmentFlag.AlignTop)
+
 
 
     def retranslateUi(self, Dialog):

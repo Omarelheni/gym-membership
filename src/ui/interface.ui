@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1143</width>
-    <height>777</height>
+    <width>1245</width>
+    <height>819</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -163,20 +163,6 @@ font-family:&quot;Poppins&quot;, sans-serif
           <enum>QFrame::Shadow::Raised</enum>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QPushButton" name="pushButton_4">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="../Qss/icons/_icons.qrc">
-              <normaloff>:/feather/icons/feather/search.png</normaloff>:/feather/icons/feather/search.png</iconset>
-            </property>
-           </widget>
-          </item>
           <item>
            <widget class="QPushButton" name="pushButton">
             <property name="cursor">

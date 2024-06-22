@@ -6,7 +6,7 @@ from PySide6.QtCore import QRect
 from PySide6.QtGui import QIcon, QPainter, QBrush, Qt, QPixmap
 from PySide6.QtWidgets import QLabel, QWidget, QVBoxLayout
 
-from ...utils import generate_random_string
+from ...utils import generate_random_string, show_label_pixmap
 
 
 class Field:
@@ -18,40 +18,17 @@ class Field:
         self.pk = pk
         self.ui_label = ui_label
 
+    def get_widget(self):
+        pass
+
 
 class FileField(Field):
-    desired_ui_width = 80  # Set your desired width
-    desired_ui_height = 80
-    def __init__(self, ui_name: str, database_name: str, destination: str, file_variable_name: str,ui_label:str,
-                 display_dimensions=None):
+
+    def __init__(self, ui_name: str, database_name: str, destination: str, file_variable_name: str, ui_label: str):
         super().__init__(database_name=database_name, ui_name=ui_name, ui_label=ui_label)
         self.qfile_variable = None
-        if display_dimensions is None:
-            display_dimensions = {}
         self.destination = destination
         self.file_variable_name = file_variable_name
-        self.display_dimensions = None
-
-    def get_widget(self,item_str):
-        # creating an image for the table
-        image_path = os.path.join(self.destination, item_str)
-        pixmap = QPixmap(image_path)
-
-        pixmap = pixmap.scaled(self.desired_ui_height, self.desired_ui_width, Qt.KeepAspectRatio,
-                               Qt.SmoothTransformation)
-
-        label = QLabel()
-        label.setPixmap(pixmap)
-        label.setAlignment(Qt.AlignCenter)
-
-        # Create a QWidget and set its layout
-        widget = QWidget()
-        layout = QVBoxLayout()
-        layout.addWidget(label)
-        layout.setAlignment(Qt.AlignCenter)
-        layout.setContentsMargins(0, 0, 0, 0)
-        widget.setLayout(layout)
-        return widget
 
     def save_file(self):
         if self.qfile_variable:
@@ -75,3 +52,16 @@ class FileField(Field):
             shutil.copy(file, destination_path)
             return file_name
 
+
+class ImageField(FileField):
+
+    def __init__(self, ui_name: str, database_name: str, destination: str, file_variable_name: str, ui_label: str):
+        super().__init__(ui_name, database_name, destination, file_variable_name, ui_label)
+        self.desired_ui_width = 80
+        self.desired_ui_height = 80
+
+    def get_widget(self,round=False):
+        # creating an image for the table
+        image_path = os.path.join(self.destination, self.value)
+
+        return show_label_pixmap(image_path, self.desired_ui_height, self.desired_ui_width,round)

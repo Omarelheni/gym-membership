@@ -1,9 +1,10 @@
 import os
 
 from PySide6.QtCore import QSignalMapper, Qt
-from PySide6.QtWidgets import QTableWidgetItem, QWidget, QHBoxLayout, QPushButton, QDialog, QFileDialog, QLineEdit
+from PySide6.QtWidgets import QTableWidgetItem, QWidget, QHBoxLayout, QPushButton, QDialog, QFileDialog, QLineEdit, \
+    QMessageBox, QLabel
 from .generic_operations import ModelOperations
-from ...models.abstract.fields import FileField
+from ...models.abstract.fields import FileField, ImageField, Field
 from ...utils import show_popup
 from .show_dialog_interface import Ui_Dialog
 from copy import copy, deepcopy
@@ -57,16 +58,16 @@ class SlideMenuUi:
                 slide_menu.slideMenu()
 
 
-class ModelOperationsUi(ModelOperations, SlideMenuUi):
+class ModelOperationsUi(ModelOperations,SlideMenuUi):
     ui_table_widget_name = ""
     ui_table_with_actions = True
     ui_table_fields = None
     ui_details_fields = []
     add_item_ui_btn = ""
     update_button_label = ""
+    column_table_width={}
 
-
-    def __init__(self, main):
+    def __init__(self, main=None):
         self.main = main
         super().__init__()
         self.create_table()
@@ -89,72 +90,94 @@ class ModelOperationsUi(ModelOperations, SlideMenuUi):
     def show_add_success_message(self):
         show_popup("L'ajout a été fait avec succès")
 
+    def show_delete_success_message(self):
+        show_popup("La suppréssion a été fait avec succès")
+
     def display_items(self):
+        table_widget = getattr(self.main.ui, self.ui_table_widget_name, None)
+        if not table_widget:
+            return
 
-        if getattr(self.main.ui, self.ui_table_widget_name, None):
-            rows_models = self.get_items()
-            tableWidget = getattr(self.main.ui, self.ui_table_widget_name, None)
-            table_length = len(self.ui_table_fields)
-            columns_labels = [getattr(self.model_instance, column).__dict__.get('ui_label', '') for column in
-                              self.ui_table_fields]
+        rows_models = self.get_items()
+        table_widget = getattr(self.main.ui, self.ui_table_widget_name, None)
+        table_length = len(self.ui_table_fields)
+        columns_labels = [getattr(self.model_instance, column).__dict__.get('ui_label', '') for column in
+                          self.ui_table_fields if getattr(self.model_instance, column) is not None ]
 
-            if self.ui_table_with_actions:
-                table_length += 1
-                columns_labels.append('Actions')
+        if self.ui_table_with_actions:
+            table_length += 1
+            columns_labels.append('Actions')
 
-            tableWidget.setColumnCount(table_length)
-            # Set the column headers
-            tableWidget.setHorizontalHeaderLabels(columns_labels)
+        table_widget.setColumnCount(table_length)
+        # Set the column headers
+        table_widget.setHorizontalHeaderLabels(columns_labels)
 
-            if tableWidget:
-                tableWidget.setRowCount(0)  # Clear all existing rows
-                for row_model in rows_models:
-                    rowPosition = tableWidget.rowCount()
-                    tableWidget.setRowCount(rowPosition + 1)
+        for field,width in self.column_table_width.items():
+            ui_label = getattr(self.model_instance,field).ui_label
+            column_index = columns_labels.index(ui_label)
+            print(' column_index, width) ==>',column_index, width)
+            table_widget.setColumnWidth(column_index, width)
 
-                    for index_table_column, table_column in enumerate(self.ui_table_fields):
-                        field = getattr(row_model, table_column)
-                        item_str = str(field.value)
-                        if isinstance(field, FileField):  # Check if the item is an image
-                            widget = field.get_widget(item_str)
-                            tableWidget.setCellWidget(rowPosition, index_table_column, widget)
-                            tableWidget.setRowHeight(rowPosition, field.desired_ui_height + 10)  # Adding padding
-                            tableWidget.setColumnWidth(index_table_column,
-                                                       field.desired_ui_width + 10)  # Adding padding
-                        else:
-                            qtablewidgetitem = QTableWidgetItem(item_str)
-                            tableWidget.setItem(rowPosition, index_table_column, qtablewidgetitem)
 
-                    if self.ui_table_with_actions:
-                        # Add layout with buttons to the last column
-                        button_layout = QWidget()
-                        layout = QHBoxLayout()
-                        edit_button = QPushButton("Edit")
-                        show_button = QPushButton("Show")
-                        delete_button = QPushButton("Delete")
 
-                        #                       delete_button.clicked.connect(lambda: self.on_button_click(self.main))
+        if table_widget:
+            table_widget.setRowCount(0)  # Clear all existing rows
+            for row_model in rows_models:
+                row_position = table_widget.rowCount()
+                table_widget.setRowCount(row_position + 1)
 
-                        layout.addWidget(edit_button)
-                        layout.addWidget(show_button)
-                        layout.addWidget(delete_button)
-                        button_layout.setLayout(layout)
-                        tableWidget.setCellWidget(rowPosition, len(self.ui_table_fields), button_layout)
-                        show_button.clicked.connect(
-                            lambda _=None, row_instance=row_model: self.show_item_ui(row_instance))
-                        edit_button.clicked.connect(
-                            lambda _=None, row_instance=row_model: self.update_item_ui(row_instance))
+                for index_table_column, table_column in enumerate(self.ui_table_fields):
+                    field = getattr(row_model, table_column)
+                    widget = field.get_widget()
+                    if isinstance(field, ImageField):  # Check if the item is an image
+                        table_widget.setRowHeight(row_position, field.desired_ui_height + 10)  # Adding padding
+                        table_widget.setColumnWidth(index_table_column,
+                                                    field.desired_ui_width + 10)  # Adding padding
+                    if not widget:
+                        widget = QLabel(str(field.value))
+                        widget.setAlignment(Qt.AlignCenter)  # Center align text
+
+                    table_widget.setCellWidget(row_position, index_table_column, widget)
+
+                self.define_actions(table_widget, row_position, len(self.ui_table_fields), row_model)
+
+    def define_actions(self, table_widget, row, column, instance):
+        if self.ui_table_with_actions:
+            # Add layout with buttons to the last column
+            button_layout = QWidget()
+            layout = QHBoxLayout()
+            edit_button = QPushButton("Edit")
+            show_button = QPushButton("Show")
+            delete_button = QPushButton("Delete")
+
+            layout.addWidget(edit_button)
+            layout.addWidget(show_button)
+            layout.addWidget(delete_button)
+            button_layout.setLayout(layout)
+            table_widget.setCellWidget(row, column, button_layout)
+            show_button.clicked.connect(
+                lambda _=None, row_instance=instance: self.show_item_ui(row_instance))
+            edit_button.clicked.connect(
+                lambda _=None, row_instance=instance: self.update_item_ui(row_instance))
+            delete_button.clicked.connect(
+                lambda _=None, row_instance=instance: self.delete_item_ui(row_instance))
 
     def show_item_ui(self, instance):
         dlg = QDialog(self.main)
         dlg.setWindowTitle("Affichage")
         show_dialog = Ui_Dialog()
         show_dialog.setupUi(dlg)
-        fields = instance.__dict__
-        for key_field, field in fields.items():
-            if field.ui_name:
-                if key_field in self.ui_details_fields:
-                    show_dialog.addFieldToWidget(field.ui_name, self.table_name, field.value, field.ui_label)
+        for key_field in self.ui_details_fields:
+            field = getattr(instance,key_field)
+            if isinstance(field,ImageField):
+                field.desired_ui_width = 150
+                field.desired_ui_height = 150
+                show_dialog.addFieldToWidget(widget=field.get_widget(round=True),type="Image")
+                continue
+
+            if hasattr(field,'ui_label'):
+                show_dialog.addFieldToWidget(field.ui_name, self.table_name, field.value, field.ui_label)
+
 
         dlg.exec()
 
@@ -178,3 +201,11 @@ class ModelOperationsUi(ModelOperations, SlideMenuUi):
             getattr(self.main.ui, self.add_item_ui_btn).clicked.connect(
                 lambda: self.update_item())
         self.open_form()
+
+    def delete_item_ui(self, instance):
+        reply = QMessageBox.question(self.main, 'Confirm Deletion',
+                                     "Are you sure you want to delete this item?",
+                                     QMessageBox.Yes | QMessageBox.Cancel)
+
+        if reply == QMessageBox.Yes:
+            self.delete_item(instance)

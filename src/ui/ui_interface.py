@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfaceBAlnOG.ui'
+## Form generated from reading UI file 'interfacewlQHjV.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.0
 ##
@@ -15,10 +15,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QDateEdit, QFrame, QHBoxLayout,
-    QHeaderView, QLabel, QLineEdit, QMainWindow,
-    QPushButton, QSizePolicy, QSpacerItem, QTableWidget,
-    QTableWidgetItem, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QFrame,
+    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
+    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
+    QSpinBox, QTableWidget, QTableWidgetItem, QVBoxLayout,
+    QWidget)
 
 from Custom_Widgets.QCustomQStackedWidget import QCustomQStackedWidget
 from Custom_Widgets.QCustomSlideMenu import QCustomSlideMenu
@@ -28,7 +29,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1143, 777)
+        MainWindow.resize(1245, 819)
         MainWindow.setStyleSheet(u"*{\n"
 "border:none;\n"
 "background-color:transparent;\n"
@@ -38,7 +39,7 @@ class Ui_MainWindow(object):
 "color: #FFFFFF;\n"
 "}\n"
 "\n"
-"#centralwidget,#mainBodyContent,#homeBtn,QLineEdit,QDateEdit{\n"
+"#centralwidget,#mainBodyContent,#homeBtn,QLineEdit,QDateEdit,QPushButton,Line,QComboBox,QSpinBox{\n"
 "background-color: #1b1b27\n"
 "}\n"
 "\n"
@@ -72,7 +73,7 @@ class Ui_MainWindow(object):
 "border-left: 3px solid #cc5bce;\n"
 "}\n"
 "\n"
-"QLineEdit,QDateEdit{\n"
+"QLineEdit,QDateEdit,QComboBox,QSpinBox{\n"
 "padding: 5px 10px;\n"
 "border-radius: 5px;\n"
 "}")
@@ -133,30 +134,21 @@ class Ui_MainWindow(object):
         self.frame_2.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.frame_2)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.pushButton_4 = QPushButton(self.frame_2)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setCursor(QCursor(Qt.PointingHandCursor))
-        icon1 = QIcon()
-        icon1.addFile(u":/feather/icons/feather/search.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_4.setIcon(icon1)
-
-        self.horizontalLayout_3.addWidget(self.pushButton_4)
-
         self.pushButton = QPushButton(self.frame_2)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
-        icon2 = QIcon()
-        icon2.addFile(u":/feather/icons/feather/bell.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton.setIcon(icon2)
+        icon1 = QIcon()
+        icon1.addFile(u":/feather/icons/feather/bell.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton.setIcon(icon1)
 
         self.horizontalLayout_3.addWidget(self.pushButton)
 
         self.pushButton_2 = QPushButton(self.frame_2)
         self.pushButton_2.setObjectName(u"pushButton_2")
         self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
-        icon3 = QIcon()
-        icon3.addFile(u":/feather/icons/feather/activity.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_2.setIcon(icon3)
+        icon2 = QIcon()
+        icon2.addFile(u":/feather/icons/feather/activity.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_2.setIcon(icon2)
 
         self.horizontalLayout_3.addWidget(self.pushButton_2)
 
@@ -166,9 +158,9 @@ class Ui_MainWindow(object):
         self.pushButton_3.setStyleSheet(u"#pushButton_3{\n"
 "				color:\"#FFFFFF\";\n"
 "}")
-        icon4 = QIcon()
-        icon4.addFile(u":/feather/icons/feather/user.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_3.setIcon(icon4)
+        icon3 = QIcon()
+        icon3.addFile(u":/feather/icons/feather/user.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_3.setIcon(icon3)
 
         self.horizontalLayout_3.addWidget(self.pushButton_3)
 
@@ -217,25 +209,25 @@ class Ui_MainWindow(object):
         self.homeBtn = QPushButton(self.frame_3)
         self.homeBtn.setObjectName(u"homeBtn")
         self.homeBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon5 = QIcon()
-        icon5.addFile(u":/feather/icons/feather/home.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.homeBtn.setIcon(icon5)
+        icon4 = QIcon()
+        icon4.addFile(u":/feather/icons/feather/home.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.homeBtn.setIcon(icon4)
 
         self.verticalLayout_5.addWidget(self.homeBtn)
 
         self.reportsBtn = QPushButton(self.frame_3)
         self.reportsBtn.setObjectName(u"reportsBtn")
         self.reportsBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon6 = QIcon()
-        icon6.addFile(u":/material_design/icons/material_design/print.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.reportsBtn.setIcon(icon6)
+        icon5 = QIcon()
+        icon5.addFile(u":/material_design/icons/material_design/print.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.reportsBtn.setIcon(icon5)
 
         self.verticalLayout_5.addWidget(self.reportsBtn)
 
         self.accountBtn = QPushButton(self.frame_3)
         self.accountBtn.setObjectName(u"accountBtn")
         self.accountBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        self.accountBtn.setIcon(icon4)
+        self.accountBtn.setIcon(icon3)
 
         self.verticalLayout_5.addWidget(self.accountBtn)
 
@@ -257,27 +249,27 @@ class Ui_MainWindow(object):
         self.settingsBtn = QPushButton(self.frame_4)
         self.settingsBtn.setObjectName(u"settingsBtn")
         self.settingsBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon7 = QIcon()
-        icon7.addFile(u":/feather/icons/feather/settings.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.settingsBtn.setIcon(icon7)
+        icon6 = QIcon()
+        icon6.addFile(u":/feather/icons/feather/settings.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.settingsBtn.setIcon(icon6)
 
         self.verticalLayout_6.addWidget(self.settingsBtn)
 
         self.helpBtn = QPushButton(self.frame_4)
         self.helpBtn.setObjectName(u"helpBtn")
         self.helpBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon8 = QIcon()
-        icon8.addFile(u":/feather/icons/feather/help-circle.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.helpBtn.setIcon(icon8)
+        icon7 = QIcon()
+        icon7.addFile(u":/feather/icons/feather/help-circle.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.helpBtn.setIcon(icon7)
 
         self.verticalLayout_6.addWidget(self.helpBtn)
 
         self.aboutBtn = QPushButton(self.frame_4)
         self.aboutBtn.setObjectName(u"aboutBtn")
         self.aboutBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon9 = QIcon()
-        icon9.addFile(u":/feather/icons/feather/info.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.aboutBtn.setIcon(icon9)
+        icon8 = QIcon()
+        icon8.addFile(u":/feather/icons/feather/info.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.aboutBtn.setIcon(icon8)
 
         self.verticalLayout_6.addWidget(self.aboutBtn)
 
@@ -326,9 +318,9 @@ class Ui_MainWindow(object):
         self.showUserFormBtn = QPushButton(self.frame_6)
         self.showUserFormBtn.setObjectName(u"showUserFormBtn")
         self.showUserFormBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon10 = QIcon()
-        icon10.addFile(u":/font_awesome/regular/icons/font_awesome/regular/square-plus.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.showUserFormBtn.setIcon(icon10)
+        icon9 = QIcon()
+        icon9.addFile(u":/font_awesome/regular/icons/font_awesome/regular/square-plus.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.showUserFormBtn.setIcon(icon9)
         self.showUserFormBtn.setIconSize(QSize(20, 20))
 
         self.horizontalLayout_6.addWidget(self.showUserFormBtn, 0, Qt.AlignmentFlag.AlignRight)
@@ -337,26 +329,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_11.addWidget(self.frame_6)
 
         self.tableWidgetUsers = QTableWidget(self.widget_3)
-        if (self.tableWidgetUsers.columnCount() < 6):
-            self.tableWidgetUsers.setColumnCount(6)
-        __qtablewidgetitem = QTableWidgetItem()
-        self.tableWidgetUsers.setHorizontalHeaderItem(0, __qtablewidgetitem)
-        __qtablewidgetitem1 = QTableWidgetItem()
-        self.tableWidgetUsers.setHorizontalHeaderItem(1, __qtablewidgetitem1)
-        __qtablewidgetitem2 = QTableWidgetItem()
-        self.tableWidgetUsers.setHorizontalHeaderItem(2, __qtablewidgetitem2)
-        __qtablewidgetitem3 = QTableWidgetItem()
-        self.tableWidgetUsers.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        __qtablewidgetitem4.setFont(font);
-        self.tableWidgetUsers.setHorizontalHeaderItem(4, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        self.tableWidgetUsers.setHorizontalHeaderItem(5, __qtablewidgetitem5)
         self.tableWidgetUsers.setObjectName(u"tableWidgetUsers")
         self.tableWidgetUsers.setStyleSheet(u"QPushButton{\n"
-"background-color: #27263c;\n"
+"background-color: #cc5bce;\n"
 "padding: 5px 10px;\n"
 "border-radius: 5px;\n"
+"\n"
 "}")
         self.tableWidgetUsers.setFrameShape(QFrame.Shape.StyledPanel)
         self.tableWidgetUsers.setLineWidth(1)
@@ -402,6 +380,26 @@ class Ui_MainWindow(object):
         self.widget_2.setMinimumSize(QSize(300, 247))
         self.verticalLayout_8 = QVBoxLayout(self.widget_2)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
+        self.widget_4 = QWidget(self.widget_2)
+        self.widget_4.setObjectName(u"widget_4")
+        self.widget_4.setStyleSheet(u"QPushButton {\n"
+"background-color: #1b1b27;\n"
+"border-radius: 10px;\n"
+"}")
+        self.horizontalLayout_8 = QHBoxLayout(self.widget_4)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.closeRightMenu = QPushButton(self.widget_4)
+        self.closeRightMenu.setObjectName(u"closeRightMenu")
+        icon10 = QIcon()
+        icon10.addFile(u":/feather/icons/feather/chevrons-right.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.closeRightMenu.setIcon(icon10)
+        self.closeRightMenu.setIconSize(QSize(18, 18))
+
+        self.horizontalLayout_8.addWidget(self.closeRightMenu, 0, Qt.AlignmentFlag.AlignLeft)
+
+
+        self.verticalLayout_8.addWidget(self.widget_4)
+
         self.label_2 = QLabel(self.widget_2)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setMinimumSize(QSize(70, 70))
@@ -426,6 +424,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
         self.firstName = QLineEdit(self.frame_5)
         self.firstName.setObjectName(u"firstName")
+        self.firstName.setReadOnly(False)
 
         self.verticalLayout_9.addWidget(self.firstName)
 
@@ -455,13 +454,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_9.addWidget(self.birthDate)
 
-        self.ImageFrame = QFrame(self.frame_5)
-        self.ImageFrame.setObjectName(u"ImageFrame")
-        self.ImageFrame.setFrameShape(QFrame.Shape.StyledPanel)
-        self.ImageFrame.setFrameShadow(QFrame.Shadow.Raised)
-        self.horizontalLayout_7 = QHBoxLayout(self.ImageFrame)
+        self.imageFrame = QFrame(self.frame_5)
+        self.imageFrame.setObjectName(u"imageFrame")
+        self.imageFrame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.imageFrame.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_7 = QHBoxLayout(self.imageFrame)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.imageBtn = QPushButton(self.ImageFrame)
+        self.imageBtn = QPushButton(self.imageFrame)
         self.imageBtn.setObjectName(u"imageBtn")
         self.imageBtn.setCursor(QCursor(Qt.PointingHandCursor))
         icon11 = QIcon()
@@ -470,13 +469,66 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_7.addWidget(self.imageBtn)
 
-        self.imageLabel = QLabel(self.ImageFrame)
+        self.imageLabel = QLabel(self.imageFrame)
         self.imageLabel.setObjectName(u"imageLabel")
 
         self.horizontalLayout_7.addWidget(self.imageLabel)
 
 
-        self.verticalLayout_9.addWidget(self.ImageFrame)
+        self.verticalLayout_9.addWidget(self.imageFrame)
+
+        self.subLine = QFrame(self.frame_5)
+        self.subLine.setObjectName(u"subLine")
+        self.subLine.setFrameShape(QFrame.Shape.HLine)
+        self.subLine.setFrameShadow(QFrame.Shadow.Sunken)
+
+        self.verticalLayout_9.addWidget(self.subLine)
+
+        self.subType = QComboBox(self.frame_5)
+        icon12 = QIcon(QIcon.fromTheme(u"#000000"))
+        self.subType.addItem(icon12, "")
+        self.subType.addItem("")
+        self.subType.addItem("")
+        self.subType.addItem("")
+        self.subType.addItem("")
+        self.subType.setObjectName(u"subType")
+
+        self.verticalLayout_9.addWidget(self.subType)
+
+        self.subDurationW = QWidget(self.frame_5)
+        self.subDurationW.setObjectName(u"subDurationW")
+        self.horizontalLayout_10 = QHBoxLayout(self.subDurationW)
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.label_7 = QLabel(self.subDurationW)
+        self.label_7.setObjectName(u"label_7")
+
+        self.horizontalLayout_10.addWidget(self.label_7)
+
+        self.subDuration = QSpinBox(self.subDurationW)
+        self.subDuration.setObjectName(u"subDuration")
+
+        self.horizontalLayout_10.addWidget(self.subDuration)
+
+
+        self.verticalLayout_9.addWidget(self.subDurationW)
+
+        self.widget_5 = QWidget(self.frame_5)
+        self.widget_5.setObjectName(u"widget_5")
+        self.horizontalLayout_9 = QHBoxLayout(self.widget_5)
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.labeldate = QLabel(self.widget_5)
+        self.labeldate.setObjectName(u"labeldate")
+
+        self.horizontalLayout_9.addWidget(self.labeldate)
+
+        self.startDate = QDateEdit(self.widget_5)
+        self.startDate.setObjectName(u"startDate")
+        self.startDate.setCalendarPopup(True)
+
+        self.horizontalLayout_9.addWidget(self.startDate)
+
+
+        self.verticalLayout_9.addWidget(self.widget_5)
 
 
         self.verticalLayout_8.addWidget(self.frame_5)
@@ -484,10 +536,11 @@ class Ui_MainWindow(object):
         self.addUserBtn = QPushButton(self.widget_2)
         self.addUserBtn.setObjectName(u"addUserBtn")
         self.addUserBtn.setCursor(QCursor(Qt.PointingHandCursor))
-        icon12 = QIcon()
-        icon12.addFile(u":/feather/icons/feather/file-plus.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.addUserBtn.setIcon(icon12)
+        icon13 = QIcon()
+        icon13.addFile(u":/feather/icons/feather/file-plus.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.addUserBtn.setIcon(icon13)
         self.addUserBtn.setIconSize(QSize(20, 20))
+        self.addUserBtn.setCheckable(True)
 
         self.verticalLayout_8.addWidget(self.addUserBtn, 0, Qt.AlignmentFlag.AlignHCenter)
 
@@ -538,7 +591,6 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.menuBtn.setText("")
         self.label.setText(QCoreApplication.translate("MainWindow", u"DASHBOARD", None))
-        self.pushButton_4.setText("")
         self.pushButton_2.setText("")
         self.pushButton_3.setText("")
         self.homeBtn.setText(QCoreApplication.translate("MainWindow", u"Home", None))
@@ -549,20 +601,9 @@ class Ui_MainWindow(object):
         self.aboutBtn.setText(QCoreApplication.translate("MainWindow", u"About", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Les Membres", None))
         self.showUserFormBtn.setText(QCoreApplication.translate("MainWindow", u"Ajouter Utilisateur", None))
-        ___qtablewidgetitem = self.tableWidgetUsers.horizontalHeaderItem(0)
-        ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Image", None));
-        ___qtablewidgetitem1 = self.tableWidgetUsers.horizontalHeaderItem(1)
-        ___qtablewidgetitem1.setText(QCoreApplication.translate("MainWindow", u"Prenom", None));
-        ___qtablewidgetitem2 = self.tableWidgetUsers.horizontalHeaderItem(2)
-        ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Nom", None));
-        ___qtablewidgetitem3 = self.tableWidgetUsers.horizontalHeaderItem(3)
-        ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Email", None));
-        ___qtablewidgetitem4 = self.tableWidgetUsers.horizontalHeaderItem(4)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Numero Telephone", None));
-        ___qtablewidgetitem5 = self.tableWidgetUsers.horizontalHeaderItem(5)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"Actions", None));
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Account Page", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"settings Page", None))
+        self.closeRightMenu.setText(QCoreApplication.translate("MainWindow", u"Fermer", None))
         self.label_2.setText("")
         self.firstName.setText(QCoreApplication.translate("MainWindow", u"Omar", None))
         self.firstName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Prenom", None))
@@ -577,6 +618,15 @@ class Ui_MainWindow(object):
         self.birthDate.setSpecialValueText("")
         self.imageBtn.setText(QCoreApplication.translate("MainWindow", u"Choisir Image", None))
         self.imageLabel.setText("")
+        self.subType.setItemText(0, QCoreApplication.translate("MainWindow", u"Abonnement mensuel", None))
+        self.subType.setItemText(1, QCoreApplication.translate("MainWindow", u"Abonnement trimestriel", None))
+        self.subType.setItemText(2, QCoreApplication.translate("MainWindow", u"Abonnement semestriel", None))
+        self.subType.setItemText(3, QCoreApplication.translate("MainWindow", u"Abonnement annuel", None))
+        self.subType.setItemText(4, QCoreApplication.translate("MainWindow", u"Autre", None))
+
+        self.subType.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Type d'abonnement", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Dur\u00e9e en mois :", None))
+        self.labeldate.setText(QCoreApplication.translate("MainWindow", u"Date de d\u00e9but :", None))
         self.addUserBtn.setText(QCoreApplication.translate("MainWindow", u"Add User", None))
         self.controlErrorsUser.setText("")
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Copyright 2024", None))

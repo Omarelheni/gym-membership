@@ -11,6 +11,7 @@ class Model:
         fields = [value for key, value in self.__dict__.items() if isinstance(value, Field)]
         return fields
 
+
     @property
     def pk_field(self):
         return next((value for value in self.__dict__.values() if isinstance(value, Field) and value.pk), None)
@@ -21,10 +22,10 @@ class Model:
     def get_fields_values_sql_query(self, attr=""):
         return "('" + "','".join(self.get_fields_attribute_value(attr)) + "')"
 
-    def set_values_from_ui(self,main):
+    def set_values_from_ui(self,ui):
         for field in self.get_fields():
             if field.ui_name:
-                ui_field = getattr(main.ui, field.ui_name, None)
+                ui_field = getattr(ui, field.ui_name, None)
 
                 if isinstance(field, FileField):
                     file = field.save_file()
