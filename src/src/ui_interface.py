@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfaceKFrYKa.ui'
+## Form generated from reading UI file 'interfaceCbKuVR.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.0
 ##
@@ -763,16 +763,16 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.widget_4)
 
-        self.label_2 = QLabel(self.widget_2)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setMinimumSize(QSize(70, 70))
-        self.label_2.setMaximumSize(QSize(70, 70))
-        self.label_2.setPixmap(QPixmap(u":/feather/icons/feather/edit.png"))
-        self.label_2.setScaledContents(True)
-        self.label_2.setWordWrap(False)
-        self.label_2.setOpenExternalLinks(False)
+        self.image_label_user = QLabel(self.widget_2)
+        self.image_label_user.setObjectName(u"image_label_user")
+        self.image_label_user.setMinimumSize(QSize(90, 90))
+        self.image_label_user.setMaximumSize(QSize(70, 70))
+        self.image_label_user.setPixmap(QPixmap(u":/feather/special/running.png"))
+        self.image_label_user.setScaledContents(True)
+        self.image_label_user.setWordWrap(False)
+        self.image_label_user.setOpenExternalLinks(False)
 
-        self.verticalLayout_8.addWidget(self.label_2, 0, Qt.AlignmentFlag.AlignHCenter)
+        self.verticalLayout_8.addWidget(self.image_label_user, 0, Qt.AlignmentFlag.AlignHCenter)
 
         self.frame_5 = QFrame(self.widget_2)
         self.frame_5.setObjectName(u"frame_5")
@@ -978,7 +978,7 @@ class Ui_MainWindow(object):
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Page profile", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Page settings", None))
         self.closeRightMenu.setText(QCoreApplication.translate("MainWindow", u"Fermer", None))
-        self.label_2.setText("")
+        self.image_label_user.setText("")
         self.firstName.setText(QCoreApplication.translate("MainWindow", u"Omar", None))
         self.firstName.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Prenom", None))
         self.lastName.setText(QCoreApplication.translate("MainWindow", u"Elheni", None))

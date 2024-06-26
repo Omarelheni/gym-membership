@@ -928,8 +928,8 @@ QCommandLinkButton:pressed {
                    <property name="styleSheet">
                     <string notr="true">QPushButton{
 padding: 5px 10px;
-border-radius: 5px;
-background-color: #292C35;
+background-color: #BC93FA;
+border-radius: 10px;
 }</string>
                    </property>
                    <property name="frameShape">
@@ -1062,11 +1062,11 @@ border-radius: 10px;
               </widget>
              </item>
              <item alignment="Qt::AlignmentFlag::AlignHCenter">
-              <widget class="QLabel" name="label_2">
+              <widget class="QLabel" name="image_label_user">
                <property name="minimumSize">
                 <size>
-                 <width>70</width>
-                 <height>70</height>
+                 <width>90</width>
+                 <height>90</height>
                 </size>
                </property>
                <property name="maximumSize">
@@ -1079,7 +1079,7 @@ border-radius: 10px;
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap resource="../Qss/icons/_icons.qrc">:/feather/icons/feather/edit.png</pixmap>
+                <pixmap resource="../Qss/icons/_icons.qrc">:/feather/special/running.png</pixmap>
                </property>
                <property name="scaledContents">
                 <bool>true</bool>
