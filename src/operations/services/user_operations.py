@@ -1,6 +1,8 @@
 import os
 
-from PySide6.QtWidgets import QFileDialog, QWidget, QHBoxLayout, QPushButton, QDialog, QDialogButtonBox
+from PySide6.QtCore import QSize
+from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import QFileDialog, QWidget, QHBoxLayout, QPushButton, QDialog, QDialogButtonBox, QLineEdit
 
 from .basic_services.ui_generic_operations import ModelOperationsUi
 from .subscription_operations import SubscriptionsOperation
@@ -23,14 +25,21 @@ class UsersOperations(ModelOperationsUi):
     open_form_slide_menu_button = 'showUserFormBtn'
     update_button_label = "Modifier un membre"
     column_table_width = {'email':200 }
+    search_fields=['first_name','last_name']
 
 
     def __init__(self, main):
         super().__init__(main)
+
         self.main.ui.imageBtn.clicked.connect(lambda: self.open_file_dialog(self.model_instance.image_file))
         self.subscription = Subscription()
         self.subscription_operation = SubscriptionsOperation()
+        self.search_value = ""
 
+        self.main.ui.searchUserBtn.clicked.connect(lambda: (self.update_search_value(), self.display_items()))
+
+    def update_search_value(self):
+        self.search_value = self.main.ui.searchUser.text()
     def clear_form(self):
         super().clear_form()
         for field in self.subscription.get_fields():
@@ -67,10 +76,26 @@ class UsersOperations(ModelOperationsUi):
             # Add layout with buttons to the last column
             button_layout = QWidget()
             layout = QHBoxLayout()
-            edit_button = QPushButton("Edit")
-            show_button = QPushButton("Show")
-            delete_button = QPushButton("Delete")
-            renew_button = QPushButton("Renew")
+
+            edit_button = QPushButton("")
+            icon = QIcon()
+            icon.addFile(u":/feather/icons/feather/edit.png", QSize(), QIcon.Normal, QIcon.Off)
+            edit_button.setIcon(icon)
+
+            show_button = QPushButton("")
+            icon = QIcon()
+            icon.addFile(u":/font_awesome/solid/icons/font_awesome/solid/circle-user.png", QSize(), QIcon.Normal, QIcon.Off)
+            show_button.setIcon(icon)
+
+            delete_button = QPushButton("")
+            icon = QIcon()
+            icon.addFile(u":/feather/icons/feather/x-octagon.png", QSize(), QIcon.Normal, QIcon.Off)
+            delete_button.setIcon(icon)
+
+            renew_button = QPushButton("")
+            icon = QIcon()
+            icon.addFile(u":/material_design/icons/material_design/autorenew.png", QSize(), QIcon.Normal, QIcon.Off)
+            renew_button.setIcon(icon)
 
             layout.addWidget(edit_button)
             layout.addWidget(show_button)

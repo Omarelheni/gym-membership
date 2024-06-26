@@ -22,7 +22,7 @@ from Custom_Widgets.QAppSettings import QAppSettings
 ########################################################################
 ## MAIN WINDOW CLASS
 ########################################################################
-class MainWindow(QMainWindow,AllUiFunctions):
+class MainWindow(QMainWindow, AllUiFunctions):
     def __init__(self, parent=None):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
@@ -33,15 +33,27 @@ class MainWindow(QMainWindow,AllUiFunctions):
         ########################################################################
         # self = QMainWindow class
         # self.ui = Ui_MainWindow / user interface class
-        #Use this if you only have one json file named "style.json" inside the root directory, "json" directory or "jsonstyles" folder.
+        # Use this if you only have one json file named "style.json" inside the root directory, "json" directory or "jsonstyles" folder.
         # loadJsonStyle(self, self.ui)
 
         # Use this to specify your json file(s) path/name
-        loadJsonStyle(self, self.ui, jsonFiles = {
+        loadJsonStyle(self, self.ui, jsonFiles={
             "json-styles/style.json"
-            })
+        })
 
         ########################################################################
+
+        #######################################################################
+        # REMOVE TITLE BAR
+        #######################################################################
+        self.setWindowFlags(Qt.FramelessWindowHint)
+
+        #######################################################################
+        # CONNECT BUTTON SIGNALS TO SLOTS
+        #######################################################################
+        self.ui.closeAppBtn.clicked.connect(self.close_app)
+        self.ui.maximizeRestoreAppBtn.clicked.connect(self.maximize_restore_app)
+        self.ui.minimizeAppBtn.clicked.connect(self.minimize_app)
 
         #######################################################################
         # SHOW WINDOW
@@ -58,8 +70,40 @@ class MainWindow(QMainWindow,AllUiFunctions):
         QAppSettings.updateAppSettings(self)
         self.set_main_ui_functions()
 
+        ########################################################################
+        # CUSTOM TITLE BAR FUNCTIONALITY
+        ########################################################################
+        self.oldPos = None
 
+    ########################################################################
+    # SLOT FUNCTIONS FOR BUTTONS
+    ########################################################################
+    def close_app(self):
+        self.close()
 
+    def maximize_restore_app(self):
+        if self.isMaximized():
+            self.showNormal()
+        else:
+            self.showMaximized()
+
+    def minimize_app(self):
+        self.showMinimized()
+
+    ########################################################################
+    # MOUSE EVENTS FOR MOVING WINDOW
+    ########################################################################
+    def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            self.oldPos = event.globalPos()
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if event.buttons() == Qt.LeftButton:
+            delta = QPoint(event.globalPos() - self.oldPos)
+            self.move(self.x() + delta.x(), self.y() + delta.y())
+            self.oldPos = event.globalPos()
+            event.accept()
 
 ########################################################################
 ## EXECUTE APP
@@ -67,11 +111,8 @@ class MainWindow(QMainWindow,AllUiFunctions):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     ########################################################################
-    ## 
+    ##
     ########################################################################
     window = MainWindow()
     window.show()
     sys.exit(app.exec_())
-########################################################################
-## END===>
-########################################################################  

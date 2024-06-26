@@ -15,10 +15,9 @@ def is_today_valid( date_str2, date_format="%Y-%m-%d"):
 
     # Get today's date
     today = datetime.today()
-    new_date = today + relativedelta(months=5)
 
     # Check if today is between the two dates
-    return new_date <= date2
+    return today <= date2
 def generate_random_string(length=6):
     """Generate a random string of fixed length."""
     return ''.join(random.choices(string.ascii_letters + string.digits, k=length))

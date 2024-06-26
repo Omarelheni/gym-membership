@@ -18,6 +18,7 @@ class SlideMenuUi:
     add_item = None
     add_item_ui_btn = ""
     form_slide_menu = ""
+    search_value = ""
 
     def __init__(self):
         if self.close_form_slide_menu_button:
@@ -66,6 +67,7 @@ class ModelOperationsUi(ModelOperations,SlideMenuUi):
     add_item_ui_btn = ""
     update_button_label = ""
     column_table_width={}
+    search_fields=[]
 
     def __init__(self, main=None):
         self.main = main
@@ -98,48 +100,52 @@ class ModelOperationsUi(ModelOperations,SlideMenuUi):
         if not table_widget:
             return
 
-        rows_models = self.get_items()
-        table_widget = getattr(self.main.ui, self.ui_table_widget_name, None)
+        if self.search_value:
+            conditions = {field: self.search_value for field in self.search_fields}
+            rows_models = self.get_search_items(conditions, 'OR', contains=True)
+        else:
+            rows_models = self.get_items()
+
         table_length = len(self.ui_table_fields)
         columns_labels = [getattr(self.model_instance, column).__dict__.get('ui_label', '') for column in
-                          self.ui_table_fields if getattr(self.model_instance, column) is not None ]
+                          self.ui_table_fields if getattr(self.model_instance, column) is not None]
 
         if self.ui_table_with_actions:
             table_length += 1
             columns_labels.append('Actions')
 
         table_widget.setColumnCount(table_length)
-        # Set the column headers
         table_widget.setHorizontalHeaderLabels(columns_labels)
 
-        for field,width in self.column_table_width.items():
-            ui_label = getattr(self.model_instance,field).ui_label
+        for field, width in self.column_table_width.items():
+            ui_label = getattr(self.model_instance, field).ui_label
             column_index = columns_labels.index(ui_label)
-            print(' column_index, width) ==>',column_index, width)
             table_widget.setColumnWidth(column_index, width)
 
+        # Add a specific width for the Actions column if applicable
+        actions_column_width = 180  # Set the width for the Actions column
+        if self.ui_table_with_actions:
+            actions_column_index = columns_labels.index('Actions')
+            table_widget.setColumnWidth(actions_column_index, actions_column_width)
 
+        table_widget.setRowCount(0)  # Clear all existing rows
+        for row_model in rows_models:
+            row_position = table_widget.rowCount()
+            table_widget.setRowCount(row_position + 1)
 
-        if table_widget:
-            table_widget.setRowCount(0)  # Clear all existing rows
-            for row_model in rows_models:
-                row_position = table_widget.rowCount()
-                table_widget.setRowCount(row_position + 1)
+            for index_table_column, table_column in enumerate(self.ui_table_fields):
+                field = getattr(row_model, table_column)
+                widget = field.get_widget()
+                if isinstance(field, ImageField):  # Check if the item is an image
+                    table_widget.setRowHeight(row_position, field.desired_ui_height + 10)  # Adding padding
+                    table_widget.setColumnWidth(index_table_column, field.desired_ui_width + 10)  # Adding padding
+                if not widget:
+                    widget = QLabel(str(field.value))
+                    widget.setAlignment(Qt.AlignCenter)  # Center align text
 
-                for index_table_column, table_column in enumerate(self.ui_table_fields):
-                    field = getattr(row_model, table_column)
-                    widget = field.get_widget()
-                    if isinstance(field, ImageField):  # Check if the item is an image
-                        table_widget.setRowHeight(row_position, field.desired_ui_height + 10)  # Adding padding
-                        table_widget.setColumnWidth(index_table_column,
-                                                    field.desired_ui_width + 10)  # Adding padding
-                    if not widget:
-                        widget = QLabel(str(field.value))
-                        widget.setAlignment(Qt.AlignCenter)  # Center align text
+                table_widget.setCellWidget(row_position, index_table_column, widget)
 
-                    table_widget.setCellWidget(row_position, index_table_column, widget)
-
-                self.define_actions(table_widget, row_position, len(self.ui_table_fields), row_model)
+            self.define_actions(table_widget, row_position, len(self.ui_table_fields), row_model)
 
     def define_actions(self, table_widget, row, column, instance):
         if self.ui_table_with_actions:
@@ -177,8 +183,6 @@ class ModelOperationsUi(ModelOperations,SlideMenuUi):
 
             if hasattr(field,'ui_label'):
                 show_dialog.addFieldToWidget(field.ui_name, self.table_name, field.value, field.ui_label)
-
-
         dlg.exec()
 
     def update_item_ui(self, instance):

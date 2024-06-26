@@ -2,7 +2,7 @@
   "QPushButton": [
     {
       "name": "menuBtn",
-      "icon": "Qss/icons/icons/feather/align-justify.png"
+      "icon": "Qss/icons/special/wrb.png"
     },
     {
       "name": "pushButton_4",

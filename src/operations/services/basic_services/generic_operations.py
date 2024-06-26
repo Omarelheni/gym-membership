@@ -143,7 +143,7 @@ class SQLLiteFunctions:
 
     def search_items_sql(self, model_class=None, conditions=None, condition_operator='AND', columns=None,
                          order_by=None):
-        order_by_database = getattr(model_class,order_by).database_name if order_by else None
+        order_by_database = getattr(model_class, order_by).database_name if order_by else None
 
         if not model_class:
             raise ValueError("Model class not provided")
@@ -166,6 +166,42 @@ class SQLLiteFunctions:
             if column in fields_and_keys:
                 condition_strings.append(f"{fields_and_keys[column].database_name} = ?")
                 condition_values.append(value)
+
+        condition_string = f' {condition_operator} '.join(condition_strings)
+        where_clause = f" WHERE {condition_string}" if condition_string else ''
+
+        order_clause = f" ORDER BY {order_by_database}" if order_by_database else ''
+
+        get_items_query = f"SELECT {columns_sql_string} FROM {model_class.table_name}{where_clause}{order_clause};"
+        raw_items = self.execute_function(get_items_query, return_response=True, values=condition_values)
+        return raw_items
+
+    def search_items_like_sql(self, model_class=None, conditions=None, condition_operator='AND', columns=None,
+                              order_by=None):
+        order_by_database = getattr(model_class, order_by).database_name if order_by else None
+
+        if not model_class:
+            raise ValueError("Model class not provided")
+
+        if not isinstance(conditions, dict):
+            raise ValueError("Conditions should be a dictionary")
+
+        fields_and_keys = model_class.__dict__
+
+        if columns:
+            columns_sql = [fields_and_keys[key].database_name for key in columns if key in fields_and_keys]
+        else:
+            columns_sql = [field.database_name for field in model_class.get_fields()]
+
+        columns_sql_string = ','.join(columns_sql) if columns else '*'
+
+        condition_strings = []
+        condition_values = []
+        for column, value in conditions.items():
+            if column in fields_and_keys:
+                # Modify the condition to use the LIKE operator
+                condition_strings.append(f"{fields_and_keys[column].database_name} LIKE ?")
+                condition_values.append(f"%{value}%")
 
         condition_string = f' {condition_operator} '.join(condition_strings)
         where_clause = f" WHERE {condition_string}" if condition_string else ''
@@ -210,10 +246,13 @@ class ModelOperations(SQLLiteFunctions):
 
         return items
 
-    def get_search_items(self, conditions, condition_operator='AND',order_by=None):
+    def get_search_items(self, conditions, condition_operator='AND', order_by=None,contains=False):
         columns = [key for key, value in self.model_instance.__dict__.items() if isinstance(value, Field)]
-
-        raw_items = self.search_items_sql(self.model_instance, conditions, condition_operator, columns,order_by)
+        if contains:
+            raw_items = self.search_items_like_sql(self.model_instance, conditions, condition_operator, columns,
+                                                   order_by)
+        else :
+            raw_items = self.search_items_sql(self.model_instance, conditions, condition_operator, columns, order_by)
         # Map the list of values to a list of instance type Field
         items = []
         for raw_item in raw_items:
@@ -226,8 +265,8 @@ class ModelOperations(SQLLiteFunctions):
 
         return items
 
-    def add_item(self,ui=None):
-        if ui is None :
+    def add_item(self, ui=None):
+        if ui is None:
             ui = self.main.ui
 
         self.model_instance.set_values_from_ui(ui=ui)
@@ -239,7 +278,7 @@ class ModelOperations(SQLLiteFunctions):
             show_popup("\n".join(errors), "error")
             return
         else:
-            if getattr(ui,'controlErrorsUser',None):
+            if getattr(ui, 'controlErrorsUser', None):
                 ui.controlErrorsUser.setText("")
 
         try:

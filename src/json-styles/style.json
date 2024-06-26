@@ -17,6 +17,7 @@
               "Icons-color": "#ffffff",
               "Theme-name": "Default-theme",
               "Default-Theme": true
+
             }
           ]
         }
@@ -35,7 +36,6 @@
                 "accountBtn",
                 "reportsBtn",
                 "settingsBtn",
-                "helpBtn",
                 "aboutBtn"
           ],
           "Style":[
@@ -61,11 +61,8 @@
 			"height": "parent"
 		}],
 		"toggleButton": [{
-			"buttonName": "menuBtn",
-			"icons": [{
-				"whenMenuIsCollapsed": ":/feather/icons/feather/align-justify.png",
-				"whenMenuIsExpanded": ":/feather/icons/feather/chevron-left.png"
-			}]
+			"buttonName": "menuBtn"
+
 		}]
   		}
   		,

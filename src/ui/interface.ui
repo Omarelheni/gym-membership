@@ -24,24 +24,28 @@ color: #FFFFFF;
 }
 
 #centralwidget,#mainBodyContent,#homeBtn,QLineEdit,QDateEdit,QPushButton,Line,QComboBox,QSpinBox{
-background-color: #1b1b27
+background-color: #292C35;
 }
 
-#header, #mainBody, #footer{
-background-color: #27263c
+#header, #mainBody, #footer,#leftMenu{
+background-color: #21252B;
 }
 
-#pushButton_3{
-border:1px solid #cc5bce;
+#showUserFormBtn{
+background-color: #21252A;
+}
+
+#profileBtn{
+border:1px solid #BC93FA;
 border-radius:19px;
 text-align:center;
 }
 
-#addUserBtn{
-background-color: #cc5bce;
+#addUserBtn,#searchUserBtn{
+background-color: #BC93FA;
 border-radius: 10px;
+color:white;
 }
-
 
 QPushButton,#leftMenu{
 text-align:left;
@@ -54,13 +58,351 @@ background-color:transparent;
 }
 
 #homeBtn{
-border-left: 3px solid #cc5bce;
+border-left: 3px solid #BC93FA;
 }
 
 QLineEdit,QDateEdit,QComboBox,QSpinBox{
 padding: 5px 10px;
 border-radius: 5px;
-}</string>
+}
+
+#searchUser{
+border-radius: 10px;
+background-color: #21252A
+}
+
+#dashboardLabel{
+color:#ffffff;
+font-family:&quot;Poppins&quot;, sans-serif
+}
+
+
+
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+
+SET APP STYLESHEET - FULL STYLES HERE
+DARK THEME - DRACULA COLOR BASED
+
+# BY: WANDERSON M.PIMENTA
+# PROJECT MADE WITH: Qt Designer and PySide6
+# V: 1.0.0
+#
+# This project can be used freely for all uses, as long as they maintain the
+# respective credits only in the Python scripts, any information in the visual
+# interface (GUI) can be modified without any implication.
+#
+# There are limitations on Qt licenses if you want to use your products
+# commercially, I recommend reading them on the official website:
+# https://doc.qt.io/qtforpython/licenses.html
+
+///////////////////////////////////////////////////////////////////////////////////////////////// */
+
+QWidget{
+	color: rgb(221, 221, 221);
+	font: 10pt &quot;Segoe UI&quot;;
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+Tooltip */
+QToolTip {
+	color: #ffffff;
+	background-color: rgba(33, 37, 43, 180);
+	border: 1px solid rgb(44, 49, 58);
+	background-image: none;
+	background-position: left center;
+    background-repeat: no-repeat;
+	border: none;
+	border-left: 2px solid rgb(255, 121, 198);
+	text-align: left;
+	padding-left: 8px;
+	margin: 0px;
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* MENUS */
+
+
+
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+QTableWidget */
+QTableWidget {
+    color: rgba(255, 255, 255, 0.7);
+    alternate-background-color: #3d3d3d;  /* Alternate row color */
+    gridline-color: rgba(255, 255, 255, 0.1);
+}
+QTableWidget::item {
+    padding: 12px 7px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+QHeaderView::section {
+    background-color: #444444;
+    border: 1px solid #555555;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 5px;
+}
+QTableWidget::item:selected {
+    background-color: #666666;
+}
+
+QTableWidget::item:selected{
+	background-color: rgb(189, 147, 249);
+}
+
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+LineEdit */
+QLineEdit {
+	border-radius: 5px;
+	border: 2px solid rgb(33, 37, 43);
+	padding-left: 10px;
+	selection-color: rgb(255, 255, 255);
+	selection-background-color: rgb(255, 121, 198);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(64, 71, 88);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(91, 101, 124);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+PlainTextEdit */
+QPlainTextEdit {
+	background-color: rgb(27, 29, 35);
+	border-radius: 5px;
+	padding: 10px;
+	selection-color: rgb(255, 255, 255);
+	selection-background-color: rgb(255, 121, 198);
+}
+QPlainTextEdit  QScrollBar:vertical {
+    width: 8px;
+ }
+QPlainTextEdit  QScrollBar:horizontal {
+    height: 8px;
+ }
+QPlainTextEdit:hover {
+	border: 2px solid rgb(64, 71, 88);
+}
+QPlainTextEdit:focus {
+	border: 2px solid rgb(91, 101, 124);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+ScrollBars */
+QScrollBar:horizontal {
+    border: none;
+    background: rgb(52, 59, 72);
+    height: 8px;
+    margin: 0px 21px 0 21px;
+	border-radius: 0px;
+}
+QScrollBar::handle:horizontal {
+    background: rgb(189, 147, 249);
+    min-width: 25px;
+	border-radius: 4px
+}
+QScrollBar::add-line:horizontal {
+    border: none;
+    background: rgb(55, 63, 77);
+    width: 20px;
+	border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:horizontal {
+    border: none;
+    background: rgb(55, 63, 77);
+    width: 20px;
+	border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    subcontrol-position: left;
+    subcontrol-origin: margin;
+}
+QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal
+{
+     background: none;
+}
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
+{
+     background: none;
+}
+ QScrollBar:vertical {
+	border: none;
+    background: rgb(52, 59, 72);
+    width: 8px;
+    margin: 21px 0 21px 0;
+	border-radius: 0px;
+ }
+ QScrollBar::handle:vertical {	
+	background: rgb(189, 147, 249);
+    min-height: 25px;
+	border-radius: 4px
+ }
+ QScrollBar::add-line:vertical {
+     border: none;
+    background: rgb(55, 63, 77);
+     height: 20px;
+	border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+     subcontrol-position: bottom;
+     subcontrol-origin: margin;
+ }
+ QScrollBar::sub-line:vertical {
+	border: none;
+    background: rgb(55, 63, 77);
+     height: 20px;
+	border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+     subcontrol-position: top;
+     subcontrol-origin: margin;
+ }
+ QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {
+     background: none;
+ }
+
+ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+     background: none;
+ }
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+CheckBox */
+QCheckBox::indicator {
+    border: 3px solid rgb(52, 59, 72);
+	width: 15px;
+	height: 15px;
+	border-radius: 10px;
+    background: rgb(44, 49, 60);
+}
+QCheckBox::indicator:hover {
+    border: 3px solid rgb(58, 66, 81);
+}
+QCheckBox::indicator:checked {
+    background: 3px solid rgb(52, 59, 72);
+	border: 3px solid rgb(52, 59, 72);	
+	background-image: url(:/icons/images/icons/cil-check-alt.png);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+RadioButton */
+QRadioButton::indicator {
+    border: 3px solid rgb(52, 59, 72);
+	width: 15px;
+	height: 15px;
+	border-radius: 10px;
+    background: rgb(44, 49, 60);
+}
+QRadioButton::indicator:hover {
+    border: 3px solid rgb(58, 66, 81);
+}
+QRadioButton::indicator:checked {
+    background: 3px solid rgb(94, 106, 130);
+	border: 3px solid rgb(52, 59, 72);	
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+ComboBox */
+QComboBox{
+	border-radius: 5px;
+	border: 2px solid rgb(33, 37, 43);
+	padding: 5px;
+	padding-left: 10px;
+}
+QComboBox:hover{
+	border: 2px solid rgb(64, 71, 88);
+}
+QComboBox::drop-down {
+	subcontrol-origin: padding;
+	subcontrol-position: top right;
+	width: 25px; 
+	border-left-width: 3px;
+	border-left-color: rgba(39, 44, 54, 150);
+	border-left-style: solid;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;	
+	background-image: url(:/icons/images/icons/cil-arrow-bottom.png);
+	background-position: center;
+	background-repeat: no-reperat;
+ }
+QComboBox QAbstractItemView {
+	color: rgb(255, 121, 198);	
+	background-color: rgb(33, 37, 43);
+	padding: 10px;
+	selection-background-color: rgb(39, 44, 54);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+Sliders */
+QSlider::groove:horizontal {
+    border-radius: 5px;
+    height: 10px;
+	margin: 0px;
+	background-color: rgb(52, 59, 72);
+}
+QSlider::groove:horizontal:hover {
+	background-color: rgb(55, 62, 76);
+}
+QSlider::handle:horizontal {
+    background-color: rgb(189, 147, 249);
+    border: none;
+    height: 10px;
+    width: 10px;
+    margin: 0px;
+	border-radius: 5px;
+}
+QSlider::handle:horizontal:hover {
+    background-color: rgb(195, 155, 255);
+}
+QSlider::handle:horizontal:pressed {
+    background-color: rgb(255, 121, 198);
+}
+
+QSlider::groove:vertical {
+    border-radius: 5px;
+    width: 10px;
+    margin: 0px;
+	background-color: rgb(52, 59, 72);
+}
+QSlider::groove:vertical:hover {
+	background-color: rgb(55, 62, 76);
+}
+QSlider::handle:vertical {
+    background-color: rgb(189, 147, 249);
+	border: none;
+    height: 10px;
+    width: 10px;
+    margin: 0px;
+	border-radius: 5px;
+}
+QSlider::handle:vertical:hover {
+    background-color: rgb(195, 155, 255);
+}
+QSlider::handle:vertical:pressed {
+    background-color: rgb(255, 121, 198);
+}
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////
+CommandLinkButton */
+QCommandLinkButton {	
+	color: rgb(255, 121, 198);
+	border-radius: 5px;
+	padding: 5px;
+}
+QCommandLinkButton:hover {	
+	color: rgb(255, 170, 255);
+	background-color: rgb(44, 49, 60);
+}
+QCommandLinkButton:pressed {	
+	color: rgb(189, 147, 249);
+	background-color: rgb(52, 58, 71);
+}
+</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -82,26 +424,9 @@ border-radius: 5px;
     <item alignment="Qt::AlignmentFlag::AlignTop">
      <widget class="QWidget" name="header" native="true">
       <property name="styleSheet">
-       <string notr="true">#header, #mainBody{
-background-color: #27263c;
-}</string>
+       <string notr="true"/>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
-       <property name="spacing">
-        <number>0</number>
-       </property>
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
        <item alignment="Qt::AlignmentFlag::AlignLeft">
         <widget class="QFrame" name="frame">
          <property name="frameShape">
@@ -115,7 +440,9 @@ background-color: #27263c;
            <widget class="QPushButton" name="menuBtn">
             <property name="font">
              <font>
-              <pointsize>11</pointsize>
+              <family>Segoe UI</family>
+              <pointsize>10</pointsize>
+              <italic>false</italic>
               <bold>false</bold>
              </font>
             </property>
@@ -127,27 +454,14 @@ background-color: #27263c;
             </property>
             <property name="icon">
              <iconset resource="../Qss/icons/_icons.qrc">
-              <normaloff>:/feather/icons/feather/align-justify.png</normaloff>:/feather/icons/feather/align-justify.png</iconset>
+              <normaloff>:/feather/special/wrb.png</normaloff>:/feather/special/wrb.png</iconset>
             </property>
            </widget>
           </item>
-          <item alignment="Qt::AlignmentFlag::AlignLeft">
+          <item>
            <widget class="QLabel" name="label">
-            <property name="font">
-             <font>
-              <family>Poppins</family>
-              <pointsize>10</pointsize>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">#label{
-color:#ffffff;
-font-family:&quot;Poppins&quot;, sans-serif
-}</string>
-            </property>
             <property name="text">
-             <string>DASHBOARD</string>
+             <string>Accueil</string>
             </property>
            </widget>
           </item>
@@ -164,46 +478,116 @@ font-family:&quot;Poppins&quot;, sans-serif
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="minimizeAppBtn">
+            <property name="minimumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
-            <property name="icon">
-             <iconset resource="../Qss/icons/_icons.qrc">
-              <normaloff>:/feather/icons/feather/bell.png</normaloff>:/feather/icons/feather/bell.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_2">
-            <property name="cursor">
-             <cursorShape>PointingHandCursor</cursorShape>
+            <property name="toolTip">
+             <string>Minimize</string>
             </property>
             <property name="text">
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../Qss/icons/_icons.qrc">
-              <normaloff>:/feather/icons/feather/activity.png</normaloff>:/feather/icons/feather/activity.png</iconset>
+             <iconset resource="../../../Modern_GUI_PyDracula_PySide6_or_PyQt6/resources.qrc">
+              <normaloff>:/icons/images/icons/icon_minimize.png</normaloff>:/icons/images/icons/icon_minimize.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_3">
+           <widget class="QPushButton" name="maximizeRestoreAppBtn">
+            <property name="minimumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>10</pointsize>
+              <italic>false</italic>
+              <bold>false</bold>
+              <stylestrategy>PreferDefault</stylestrategy>
+             </font>
+            </property>
             <property name="cursor">
              <cursorShape>PointingHandCursor</cursorShape>
             </property>
-            <property name="styleSheet">
-             <string notr="true">#pushButton_3{
-				color:&quot;#FFFFFF&quot;;
-}</string>
+            <property name="toolTip">
+             <string>Maximize</string>
             </property>
             <property name="text">
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../Qss/icons/_icons.qrc">
-              <normaloff>:/feather/icons/feather/user.png</normaloff>:/feather/icons/feather/user.png</iconset>
+             <iconset resource="../../../Modern_GUI_PyDracula_PySide6_or_PyQt6/resources.qrc">
+              <normaloff>:/icons/images/icons/icon_maximize.png</normaloff>:/icons/images/icons/icon_maximize.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="closeAppBtn">
+            <property name="minimumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>28</width>
+              <height>28</height>
+             </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="toolTip">
+             <string>Close</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../Modern_GUI_PyDracula_PySide6_or_PyQt6/resources.qrc">
+              <normaloff>:/icons/images/icons/icon_close.png</normaloff>:/icons/images/icons/icon_close.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>20</width>
+              <height>20</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -222,9 +606,7 @@ font-family:&quot;Poppins&quot;, sans-serif
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">#mainBody{
-background-color: #27263c;
-}</string>
+       <string notr="true"/>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <property name="spacing">
@@ -252,14 +634,12 @@ background-color: #27263c;
          </property>
          <property name="maximumSize">
           <size>
-           <width>0</width>
+           <width>200</width>
            <height>16777215</height>
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">#leftMenu{
-background-color: #27263c;
-}</string>
+          <string notr="true"/>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_3">
           <property name="spacing">
@@ -331,7 +711,7 @@ background-color: #27263c;
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="text">
-                   <string>Home</string>
+                   <string>Accueil</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../Qss/icons/_icons.qrc">
@@ -345,11 +725,11 @@ background-color: #27263c;
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="text">
-                   <string>Reports</string>
+                   <string>Entraineurs</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../Qss/icons/_icons.qrc">
-                    <normaloff>:/material_design/icons/material_design/print.png</normaloff>:/material_design/icons/material_design/print.png</iconset>
+                    <normaloff>:/font_awesome/solid/icons/font_awesome/solid/people-group.png</normaloff>:/font_awesome/solid/icons/font_awesome/solid/people-group.png</iconset>
                   </property>
                  </widget>
                 </item>
@@ -359,7 +739,7 @@ background-color: #27263c;
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="text">
-                   <string>Account</string>
+                   <string>Profile</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../Qss/icons/_icons.qrc">
@@ -422,26 +802,12 @@ background-color: #27263c;
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="helpBtn">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="text">
-                   <string>Help</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../Qss/icons/_icons.qrc">
-                    <normaloff>:/feather/icons/feather/help-circle.png</normaloff>:/feather/icons/feather/help-circle.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QPushButton" name="aboutBtn">
                   <property name="cursor">
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="text">
-                   <string>About</string>
+                   <string>A propos</string>
                   </property>
                   <property name="icon">
                    <iconset resource="../Qss/icons/_icons.qrc">
@@ -487,10 +853,13 @@ background-color: #27263c;
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_6">
                     <item>
-                     <widget class="QLabel" name="label_4">
+                     <widget class="QLabel" name="membersLabel">
                       <property name="font">
                        <font>
-                        <pointsize>17</pointsize>
+                        <family>Segoe UI</family>
+                        <pointsize>10</pointsize>
+                        <italic>false</italic>
+                        <bold>false</bold>
                        </font>
                       </property>
                       <property name="text">
@@ -504,7 +873,7 @@ background-color: #27263c;
                        <cursorShape>PointingHandCursor</cursorShape>
                       </property>
                       <property name="text">
-                       <string>Ajouter Utilisateur</string>
+                       <string>Ajouter un membre</string>
                       </property>
                       <property name="icon">
                        <iconset resource="../Qss/icons/_icons.qrc">
@@ -522,13 +891,45 @@ background-color: #27263c;
                   </widget>
                  </item>
                  <item>
+                  <widget class="QWidget" name="searchUserBar" native="true">
+                   <property name="maximumSize">
+                    <size>
+                     <width>750</width>
+                     <height>16777215</height>
+                    </size>
+                   </property>
+                   <layout class="QHBoxLayout" name="horizontalLayout_11">
+                    <item>
+                     <widget class="QLineEdit" name="searchUser">
+                      <property name="placeholderText">
+                       <string>Recherche ..</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="searchUserBtn">
+                      <property name="cursor">
+                       <cursorShape>PointingHandCursor</cursorShape>
+                      </property>
+                      <property name="text">
+                       <string/>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="../Qss/icons/_icons.qrc">
+                        <normaloff>:/feather/icons/feather/search.png</normaloff>:/feather/icons/feather/search.png</iconset>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
                   <widget class="QTableWidget" name="tableWidgetUsers">
                    <property name="styleSheet">
                     <string notr="true">QPushButton{
-background-color: #cc5bce;
 padding: 5px 10px;
 border-radius: 5px;
-
+background-color: #292C35;
 }</string>
                    </property>
                    <property name="frameShape">
@@ -568,11 +969,14 @@ border-radius: 5px;
               </property>
               <property name="font">
                <font>
-                <pointsize>17</pointsize>
+                <family>Segoe UI</family>
+                <pointsize>10</pointsize>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
-               <string>Account Page</string>
+               <string>Page profile</string>
               </property>
              </widget>
             </widget>
@@ -588,11 +992,14 @@ border-radius: 5px;
               </property>
               <property name="font">
                <font>
-                <pointsize>17</pointsize>
+                <family>Segoe UI</family>
+                <pointsize>10</pointsize>
+                <italic>false</italic>
+                <bold>false</bold>
                </font>
               </property>
               <property name="text">
-               <string>settings Page</string>
+               <string>Page settings</string>
               </property>
              </widget>
             </widget>
@@ -629,7 +1036,7 @@ border-radius: 5px;
               <widget class="QWidget" name="widget_4" native="true">
                <property name="styleSheet">
                 <string notr="true">QPushButton {
-background-color: #1b1b27;
+background-color:#292C35;
 border-radius: 10px;
 }</string>
                </property>
@@ -691,7 +1098,7 @@ border-radius: 10px;
                 <string notr="true">QPushButton{
 padding: 5px 10px;
 border-radius: 5px;
-background-color: #1b1b27
+background-color: #292C35;
 }</string>
                </property>
                <property name="frameShape">
@@ -966,6 +1373,7 @@ background-color: #1b1b27
  </customwidgets>
  <resources>
   <include location="../Qss/icons/_icons.qrc"/>
+  <include location="../../../Modern_GUI_PyDracula_PySide6_or_PyQt6/resources.qrc"/>
  </resources>
  <connections/>
 </ui>
