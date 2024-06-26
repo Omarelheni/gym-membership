@@ -2,7 +2,7 @@
 
 Introducing Gym Membership, a robust gym management system built using Python and Qt. It offers powerful features designed to help you efficiently scale and manage your gym or fitness center.
 
-![My Image](https://raw.github.com/Omarelheni/gym-membership/blob/main/images/gym-member-app.png)
+![My Image](https://github.com/Omarelheni/gym-membership/blob/main/images/gym-member-app.png)
 
 ## Features
 
