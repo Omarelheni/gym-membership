@@ -1,3 +1,4 @@
+import json
 import random, string
 
 from PIL.ImageQt import QPixmap
@@ -9,7 +10,24 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 
-def is_today_valid( date_str2, date_format="%Y-%m-%d"):
+
+
+class LocalizationManager:
+
+    def __init__(self, file_path):
+        self.language = "FR"
+        self.localization_data = self.load_localization_data(file_path)
+
+    def load_localization_data(self, file_path):
+        with open(file_path, 'r') as file:
+            return json.load(file)
+
+    def get_translation(self, message_key):
+        print('localization_data ==>',self.localization_data)
+        return self.localization_data.get(self.language, {}).get(message_key, "")
+
+
+def is_today_valid(date_str2, date_format="%Y-%m-%d"):
     # Parse the input date strings to datetime objects
     date2 = datetime.strptime(date_str2, date_format)
 
@@ -18,6 +36,8 @@ def is_today_valid( date_str2, date_format="%Y-%m-%d"):
 
     # Check if today is between the two dates
     return today <= date2
+
+
 def generate_random_string(length=6):
     """Generate a random string of fixed length."""
     return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
@@ -55,8 +75,8 @@ class RoundLabel(QLabel):
         painter.drawEllipse(0, 0, radius * 2, radius * 2)
 
 
-def show_label_pixmap(pixmap_path, height, width,round=False):
-    if round :
+def show_label_pixmap(pixmap_path, height, width, round=False):
+    if round:
         label = RoundLabel()  # Use the RoundLabel subclass
     else:
         label = QLabel()

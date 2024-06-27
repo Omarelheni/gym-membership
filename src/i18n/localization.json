@@ -1,0 +1,46 @@
+{
+  "ENG": {
+    "member_updated": "The member has been successfully updated",
+    "member_added": "The member has been successfully added",
+    "subscription_applied": "The subscription has been successfully applied",
+    "name": "Name",
+    "surname": "Surname",
+    "email": "E-mail",
+    "address": "Address",
+    "birth_date": "Date of Birth",
+    "image": "Image",
+    "telephone_number": "Telephone number",
+    "subscription": "Subscription",
+    "Actions": "Actions"
+  },
+  "FR": {
+    "member_updated": "Le membre a été modifié avec succès",
+    "member_added": "Le membre a été ajouté avec succès",
+    "subscription_applied": "L'abonnement a été appliqué avec succès",
+    "name": "Nom",
+    "surname": "Prénom",
+    "email": "E-mail",
+    "address": "Adresse",
+    "birth_date": "Date de naissance",
+    "image": "Image",
+    "telephone_number": "Numero de telephone",
+    "subscription": "Abonnement",
+    "Actions": "Actions"
+
+  },
+  "AR": {
+    "member_updated": "تم تعديل العضو بنجاح",
+    "member_added": "تم إضافة العضو بنجاح",
+    "subscription_applied": "تم تطبيق الاشتراك بنجاح",
+    "name": "الاسم",
+    "surname": "اللقب",
+    "email": "البريد الإلكتروني",
+    "address": "العنوان",
+    "birth_date": "تاريخ الميلاد",
+    "image": "الصورة",
+    "telephone_number": "رقم الهاتف",
+    "subscription": "الاشتراك",
+    "Actions": "أجراءات"
+
+  }
+}

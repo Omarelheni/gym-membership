@@ -34,7 +34,6 @@
           "Buttons": [
                 "homeBtn",
                 "accountBtn",
-                "reportsBtn",
                 "settingsBtn",
                 "aboutBtn"
           ],

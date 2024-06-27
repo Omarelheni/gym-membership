@@ -96,6 +96,7 @@ class ModelOperationsUi(ModelOperations,SlideMenuUi):
         show_popup("La suppréssion a été fait avec succès")
 
     def display_items(self):
+        translate = self.main.localization_manager.get_translation
         table_widget = getattr(self.main.ui, self.ui_table_widget_name, None)
         if not table_widget:
             return
@@ -107,8 +108,13 @@ class ModelOperationsUi(ModelOperations,SlideMenuUi):
             rows_models = self.get_items()
 
         table_length = len(self.ui_table_fields)
-        columns_labels = [getattr(self.model_instance, column).__dict__.get('ui_label', '') for column in
-                          self.ui_table_fields if getattr(self.model_instance, column) is not None]
+        columns_labels = [
+            translate(getattr(self.model_instance, column).__dict__.get('ui_label', ''))
+            for column in self.ui_table_fields
+            if getattr(self.model_instance, column) is not None
+        ]
+
+        print('columns_labels ==>',columns_labels)
 
         if self.ui_table_with_actions:
             table_length += 1
@@ -119,7 +125,7 @@ class ModelOperationsUi(ModelOperations,SlideMenuUi):
 
         for field, width in self.column_table_width.items():
             ui_label = getattr(self.model_instance, field).ui_label
-            column_index = columns_labels.index(ui_label)
+            column_index = columns_labels.index(translate(ui_label))
             table_widget.setColumnWidth(column_index, width)
 
         # Add a specific width for the Actions column if applicable

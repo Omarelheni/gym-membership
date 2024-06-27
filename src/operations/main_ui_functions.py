@@ -5,14 +5,19 @@ from .services.subscription_operations import SubscriptionsOperation
 from .services.user_operations import UsersOperations
 import os
 
+from .utils import LocalizationManager
+
 
 class GenericsUiFunction:
     operation_class = None
     add_item_ui_btn = None
     main = None
+    operation_instance= None
 
     def set_main_ui_functions(self):
-        operation_class_ins = self.operation_class(main=self.main)
+        self.operation_instance = self.operation_class(main=self.main)
+    def refresh_operation(self):
+        self.operation_instance.display_items()
 
 
 
@@ -34,22 +39,31 @@ class SubscriptionUiFunction(GenericsUiFunction):
 
 class UserUiFunction(GenericsUiFunction):
     operation_class = UsersOperations
-    add_item_ui_btn = 'addUserBtn'
-    file_variable_name = 'user_add_file_variable'
 
     def set_main_ui_functions(self):
         super().set_main_ui_functions()
 
 
 class AllUiFunctions:
+
     def __init__(self):
-        self.user_ui_function = UserUiFunction()
-        self.subscription_ui_function = SubscriptionUiFunction()
-        # Add any other UI function instances here
+        self.ui_functions = [UserUiFunction(), SubscriptionUiFunction()]
+        self.localization_manager = LocalizationManager("./i18n/localization.json")
+
+    def change_language(self,text):
+        if text == "ENG":
+            self.ui.retranslateUiEng(self)
+        if text == "FR":
+            self.ui.retranslateUi(self)
+        if text == "AR":
+            self.ui.retranslateUiAr(self)
+        self.localization_manager.language = text
 
     def set_main_ui_functions(self):
-        self.user_ui_function.main = self
-        self.user_ui_function.set_main_ui_functions()
+        for ui_function in self.ui_functions:
+            ui_function.main = self
+            ui_function.set_main_ui_functions()
+        self.ui.LanguageBox.currentTextChanged.connect(self.change_language)
 
-        self.subscription_ui_function.main = self
-        self.subscription_ui_function.set_main_ui_functions()
+
+

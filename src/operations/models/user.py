@@ -16,13 +16,13 @@ class User(Model):
 
     def __init__(self):
         self.id = Field(database_name='ID', pk=True)
-        self.first_name = Field("firstName", "FIRST_NAME", "TEXT", ui_label="Prenom")
-        self.last_name = Field("lastName", "LAST_NAME", "TEXT", ui_label="Nom")
-        self.email = Field("email", "EMAIL", "TEXT", ui_label="E-mail")
-        self.phone_number = Field("phoneNb", "PHONE_NUMBER", "TEXT", ui_label="Numero Telephone")
-        self.address = Field("address", "ADDRESS", "TEXT", ui_label="Adresse")
-        self.birth_date = Field("birthDate", "BIRTH_DATE", "DATE", ui_label="Date de naissance")
-        self.image_file = ImageField("imageLabel", "IMAGE", "images-users", "user_add_file_variable", ui_label="Image")
+        self.first_name = Field("firstName", "FIRST_NAME", "TEXT", ui_label="surname")
+        self.last_name = Field("lastName", "LAST_NAME", "TEXT", ui_label="name")
+        self.email = Field("email", "EMAIL", "TEXT", ui_label="email")
+        self.phone_number = Field("phoneNb", "PHONE_NUMBER", "TEXT", ui_label="telephone_number")
+        self.address = Field("address", "ADDRESS", "TEXT", ui_label="adress")
+        self.birth_date = Field("birthDate", "BIRTH_DATE", "DATE", ui_label="birth_date")
+        self.image_file = ImageField("imageLabel", "IMAGE", "images-users", "user_add_file_variable", ui_label="image")
 
     @property
     def last_subscription(self):
@@ -54,7 +54,7 @@ class User(Model):
     def is_subscription_valid(self):
         class FieldSubs:
             def __init__(self, is_valid):
-                self.ui_label = 'Abonnement'
+                self.ui_label = 'subscription'
                 self.is_valid = is_valid
 
             def get_widget(self):

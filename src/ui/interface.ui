@@ -478,6 +478,49 @@ QCommandLinkButton:pressed {
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
+           <widget class="QComboBox" name="LanguageBox">
+            <property name="minimumSize">
+             <size>
+              <width>90</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <item>
+             <property name="text">
+              <string notr="true">FR</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../Qss/icons/_icons.qrc">
+               <normaloff>:/feather/special/fr.png</normaloff>:/feather/special/fr.png</iconset>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string notr="true">ENG</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../Qss/icons/_icons.qrc">
+               <normaloff>:/feather/special/eng.png</normaloff>:/feather/special/eng.png</iconset>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>AR</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../Qss/icons/_icons.qrc">
+               <normaloff>:/feather/special/tn.png</normaloff>:/feather/special/tn.png</iconset>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="minimizeAppBtn">
             <property name="minimumSize">
              <size>
@@ -720,20 +763,6 @@ QCommandLinkButton:pressed {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="reportsBtn">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="text">
-                   <string>Entraineurs</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../Qss/icons/_icons.qrc">
-                    <normaloff>:/font_awesome/solid/icons/font_awesome/solid/people-group.png</normaloff>:/font_awesome/solid/icons/font_awesome/solid/people-group.png</iconset>
-                  </property>
-                 </widget>
-                </item>
-                <item>
                  <widget class="QPushButton" name="accountBtn">
                   <property name="cursor">
                    <cursorShape>PointingHandCursor</cursorShape>
@@ -852,7 +881,7 @@ QCommandLinkButton:pressed {
                     <enum>QFrame::Shadow::Raised</enum>
                    </property>
                    <layout class="QHBoxLayout" name="horizontalLayout_6">
-                    <item>
+                    <item alignment="Qt::AlignmentFlag::AlignLeft">
                      <widget class="QLabel" name="membersLabel">
                       <property name="font">
                        <font>
@@ -1111,7 +1140,7 @@ background-color: #292C35;
                 <item>
                  <widget class="QLineEdit" name="firstName">
                   <property name="text">
-                   <string>Omar</string>
+                   <string/>
                   </property>
                   <property name="readOnly">
                    <bool>false</bool>
@@ -1124,7 +1153,7 @@ background-color: #292C35;
                 <item>
                  <widget class="QLineEdit" name="lastName">
                   <property name="text">
-                   <string>Elheni</string>
+                   <string/>
                   </property>
                   <property name="placeholderText">
                    <string>Nom</string>
@@ -1134,7 +1163,7 @@ background-color: #292C35;
                 <item>
                  <widget class="QLineEdit" name="email">
                   <property name="text">
-                   <string>elheniomar@gmail.com</string>
+                   <string/>
                   </property>
                   <property name="placeholderText">
                    <string>Email</string>
@@ -1144,7 +1173,7 @@ background-color: #292C35;
                 <item>
                  <widget class="QLineEdit" name="phoneNb">
                   <property name="text">
-                   <string>98785465</string>
+                   <string/>
                   </property>
                   <property name="placeholderText">
                    <string>Numero Telephone</string>
@@ -1154,7 +1183,7 @@ background-color: #292C35;
                 <item>
                  <widget class="QLineEdit" name="address">
                   <property name="text">
-                   <string>Ariana</string>
+                   <string/>
                   </property>
                   <property name="placeholderText">
                    <string>Adresse</string>
@@ -1374,6 +1403,7 @@ background-color: #292C35;
  <resources>
   <include location="../Qss/icons/_icons.qrc"/>
   <include location="../../../Modern_GUI_PyDracula_PySide6_or_PyQt6/resources.qrc"/>
+  <include location="../../../../../.designer/Qss/icons/_icons.qrc"/>
  </resources>
  <connections/>
 </ui>
