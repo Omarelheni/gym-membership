@@ -16,14 +16,10 @@ class GenericsUiFunction:
 
     def set_main_ui_functions(self):
         self.operation_instance = self.operation_class(main=self.main)
-    def refresh_operation(self):
-        self.operation_instance.display_items()
 
 
-
-class SubscriptionUiFunction(GenericsUiFunction):
-    operation_class = SubscriptionsOperation
-
+class UserUiFunction(GenericsUiFunction):
+    operation_class = UsersOperations
     def set_main_ui_functions(self):
         super().set_main_ui_functions()
         self.main.ui.startDate.setDate(QDate.currentDate())
@@ -37,17 +33,11 @@ class SubscriptionUiFunction(GenericsUiFunction):
             self.main.ui.subDurationW.setHidden(True)
 
 
-class UserUiFunction(GenericsUiFunction):
-    operation_class = UsersOperations
-
-    def set_main_ui_functions(self):
-        super().set_main_ui_functions()
-
 
 class AllUiFunctions:
 
     def __init__(self):
-        self.ui_functions = [UserUiFunction(), SubscriptionUiFunction()]
+        self.ui_functions = [UserUiFunction()]
         self.localization_manager = LocalizationManager("./i18n/localization.json")
 
     def change_language(self,text):
@@ -58,6 +48,8 @@ class AllUiFunctions:
         if text == "AR":
             self.ui.retranslateUiAr(self)
         self.localization_manager.language = text
+        for ui_function in self.ui_functions:
+            ui_function.operation_instance.translate_table_columns()
 
     def set_main_ui_functions(self):
         for ui_function in self.ui_functions:

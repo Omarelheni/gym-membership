@@ -59,15 +59,15 @@ class SlideMenuUi:
                 slide_menu.slideMenu()
 
 
-class ModelOperationsUi(ModelOperations,SlideMenuUi):
+class ModelOperationsUi(ModelOperations, SlideMenuUi):
     ui_table_widget_name = ""
     ui_table_with_actions = True
     ui_table_fields = None
     ui_details_fields = []
     add_item_ui_btn = ""
     update_button_label = ""
-    column_table_width={}
-    search_fields=[]
+    column_table_width = {}
+    search_fields = []
 
     def __init__(self, main=None):
         self.main = main
@@ -89,68 +89,83 @@ class ModelOperationsUi(ModelOperations,SlideMenuUi):
             # Update the label with the filename
             self.main.ui.imageLabel.setText(f"Selected file: {file_name}")
 
-    def show_add_success_message(self):
-        show_popup("L'ajout a été fait avec succès")
-
-    def show_delete_success_message(self):
-        show_popup("La suppréssion a été fait avec succès")
-
     def display_items(self):
+        # Get the translation function from the localization manager
         translate = self.main.localization_manager.get_translation
+
+        # Get the table widget from the UI using its name
         table_widget = getattr(self.main.ui, self.ui_table_widget_name, None)
+
+        # If the table widget does not exist, exit the function
         if not table_widget:
             return
 
+        # Determine if a search value is provided, and get the relevant items
         if self.search_value:
             conditions = {field: self.search_value for field in self.search_fields}
             rows_models = self.get_search_items(conditions, 'OR', contains=True)
         else:
             rows_models = self.get_items()
 
+        # Determine the number of columns in the table
         table_length = len(self.ui_table_fields)
+
+        # Create a list of column labels using translations and model attributes
         columns_labels = [
             translate(getattr(self.model_instance, column).__dict__.get('ui_label', ''))
             for column in self.ui_table_fields
             if getattr(self.model_instance, column) is not None
         ]
 
-        print('columns_labels ==>',columns_labels)
-
+        # Add an "Actions" column if required
         if self.ui_table_with_actions:
             table_length += 1
             columns_labels.append('Actions')
 
+        # Set the number of columns and header labels for the table widget
         table_widget.setColumnCount(table_length)
         table_widget.setHorizontalHeaderLabels(columns_labels)
 
+        # Set the width for each column based on predefined settings
         for field, width in self.column_table_width.items():
             ui_label = getattr(self.model_instance, field).ui_label
             column_index = columns_labels.index(translate(ui_label))
             table_widget.setColumnWidth(column_index, width)
 
-        # Add a specific width for the Actions column if applicable
+        # Add a specific width for the "Actions" column if it exists
         actions_column_width = 180  # Set the width for the Actions column
         if self.ui_table_with_actions:
             actions_column_index = columns_labels.index('Actions')
             table_widget.setColumnWidth(actions_column_index, actions_column_width)
 
-        table_widget.setRowCount(0)  # Clear all existing rows
+        # Clear all existing rows in the table
+        table_widget.setRowCount(0)
+
+        # Populate the table with items
         for row_model in rows_models:
+            # Add a new row to the table
             row_position = table_widget.rowCount()
             table_widget.setRowCount(row_position + 1)
 
+            # Iterate over each column and add the corresponding widget
             for index_table_column, table_column in enumerate(self.ui_table_fields):
                 field = getattr(row_model, table_column)
                 widget = field.get_widget()
-                if isinstance(field, ImageField):  # Check if the item is an image
+
+                # Check if the item is an image and adjust the row/column sizes accordingly
+                if isinstance(field, ImageField):
                     table_widget.setRowHeight(row_position, field.desired_ui_height + 10)  # Adding padding
                     table_widget.setColumnWidth(index_table_column, field.desired_ui_width + 10)  # Adding padding
+
+                # If no widget is provided, create a QLabel to display the value
                 if not widget:
                     widget = QLabel(str(field.value))
                     widget.setAlignment(Qt.AlignCenter)  # Center align text
 
+                # Set the widget in the table cell
                 table_widget.setCellWidget(row_position, index_table_column, widget)
 
+            # Define actions for the current row
             self.define_actions(table_widget, row_position, len(self.ui_table_fields), row_model)
 
     def define_actions(self, table_widget, row, column, instance):
@@ -175,20 +190,22 @@ class ModelOperationsUi(ModelOperations,SlideMenuUi):
                 lambda _=None, row_instance=instance: self.delete_item_ui(row_instance))
 
     def show_item_ui(self, instance):
+        translate = self.main.localization_manager.get_translation
+
         dlg = QDialog(self.main)
         dlg.setWindowTitle("Affichage")
         show_dialog = Ui_Dialog()
         show_dialog.setupUi(dlg)
         for key_field in self.ui_details_fields:
-            field = getattr(instance,key_field)
-            if isinstance(field,ImageField):
+            field = getattr(instance, key_field)
+            if isinstance(field, ImageField):
                 field.desired_ui_width = 150
                 field.desired_ui_height = 150
-                show_dialog.addFieldToWidget(widget=field.get_widget(round=True),type="Image")
+                show_dialog.addFieldToWidget(widget=field.get_widget(round=True), type="Image")
                 continue
 
-            if hasattr(field,'ui_label'):
-                show_dialog.addFieldToWidget(field.ui_name, self.table_name, field.value, field.ui_label)
+            if hasattr(field, 'ui_label'):
+                show_dialog.addFieldToWidget(field.ui_name, self.table_name, field.value, translate(field.ui_label))
         dlg.exec()
 
     def update_item_ui(self, instance):
@@ -219,3 +236,39 @@ class ModelOperationsUi(ModelOperations,SlideMenuUi):
 
         if reply == QMessageBox.Yes:
             self.delete_item(instance)
+
+    def translate_table_columns(self):
+        # Get the translation function from the localization manager
+        translate = self.main.localization_manager.get_translation
+
+        # Get the table widget from the UI using its name
+        table_widget = getattr(self.main.ui, self.ui_table_widget_name, None)
+
+        # If the table widget does not exist, exit the function
+        if not table_widget:
+            return
+
+        # Determine the number of columns in the table
+        table_length = len(self.ui_table_fields)
+
+        # Create a list of column labels using translations and model attributes
+        columns_labels = [
+            translate(getattr(self.model_instance, column).__dict__.get('ui_label', ''))
+            for column in self.ui_table_fields
+            if getattr(self.model_instance, column) is not None
+        ]
+
+        # Add an "Actions" column if required
+        if self.ui_table_with_actions:
+            table_length += 1
+            columns_labels.append(translate('Actions'))
+
+        # Set the number of columns and header labels for the table widget
+        table_widget.setColumnCount(table_length)
+        table_widget.setHorizontalHeaderLabels(columns_labels)
+
+    def show_add_success_message(self):
+        show_popup("L'ajout a été fait avec succès")
+
+    def show_delete_success_message(self):
+        show_popup("La suppréssion a été fait avec succès")

@@ -23,7 +23,6 @@ class LocalizationManager:
             return json.load(file)
 
     def get_translation(self, message_key):
-        print('localization_data ==>',self.localization_data)
         return self.localization_data.get(self.language, {}).get(message_key, "")
 
 

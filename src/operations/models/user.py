@@ -20,7 +20,7 @@ class User(Model):
         self.last_name = Field("lastName", "LAST_NAME", "TEXT", ui_label="name")
         self.email = Field("email", "EMAIL", "TEXT", ui_label="email")
         self.phone_number = Field("phoneNb", "PHONE_NUMBER", "TEXT", ui_label="telephone_number")
-        self.address = Field("address", "ADDRESS", "TEXT", ui_label="adress")
+        self.address = Field("address", "ADDRESS", "TEXT", ui_label="address")
         self.birth_date = Field("birthDate", "BIRTH_DATE", "DATE", ui_label="birth_date")
         self.image_file = ImageField("imageLabel", "IMAGE", "images-users", "user_add_file_variable", ui_label="image")
 
@@ -29,7 +29,7 @@ class User(Model):
         from ..services import SubscriptionsOperation
 
         sub_operation = SubscriptionsOperation()
-        results = sub_operation.get_search_items({'member': self.id.value}, order_by='start_date')
+        results = sub_operation.get_search_items({'member': self.id.value}, order_by='id')
 
         # Check if the results list is not empty
         if results:

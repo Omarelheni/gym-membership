@@ -11,7 +11,9 @@
     "image": "Image",
     "telephone_number": "Telephone number",
     "subscription": "Subscription",
+    "subscription_end_date": "Subscription end date",
     "Actions": "Actions"
+
   },
   "FR": {
     "member_updated": "Le membre a été modifié avec succès",
@@ -25,8 +27,8 @@
     "image": "Image",
     "telephone_number": "Numero de telephone",
     "subscription": "Abonnement",
+    "subscription_end_date": "Date de fin de l'abonnement",
     "Actions": "Actions"
-
   },
   "AR": {
     "member_updated": "تم تعديل العضو بنجاح",
@@ -40,6 +42,7 @@
     "image": "الصورة",
     "telephone_number": "رقم الهاتف",
     "subscription": "الاشتراك",
+    "subscription_end_date": "تاريخ انتهاء الاشتراك",
     "Actions": "أجراءات"
 
   }

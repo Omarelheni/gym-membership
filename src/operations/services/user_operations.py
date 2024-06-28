@@ -24,7 +24,7 @@ class UsersOperations(ModelOperationsUi):
     close_form_slide_menu_button = 'closeRightMenu'
     open_form_slide_menu_button = 'showUserFormBtn'
     update_button_label = "Modifier un membre"
-    column_table_width = {'email':200 }
+    column_table_width = {'email':200 ,'phone_number':180}
     search_fields=['first_name','last_name']
 
 
