@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1245</width>
-    <height>819</height>
+    <width>1325</width>
+    <height>1011</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1181,23 +1181,66 @@ background-color: #292C35;
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="address">
+                 <widget class="QLineEdit" name="cin">
                   <property name="text">
                    <string/>
                   </property>
                   <property name="placeholderText">
-                   <string>Adresse</string>
+                   <string>Numéro carte d'identité national</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QDateEdit" name="birthDate">
-                  <property name="specialValueText">
-                   <string/>
-                  </property>
-                  <property name="calendarPopup">
-                   <bool>true</bool>
-                  </property>
+                 <widget class="QWidget" name="widget_8" native="true">
+                  <layout class="QHBoxLayout" name="horizontalLayout_14">
+                   <item>
+                    <widget class="QLabel" name="labelBirthDate">
+                     <property name="text">
+                      <string>Date de naissance :</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QDateEdit" name="birthDate">
+                     <property name="specialValueText">
+                      <string/>
+                     </property>
+                     <property name="calendarPopup">
+                      <bool>true</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QWidget" name="widget_7" native="true">
+                  <layout class="QHBoxLayout" name="horizontalLayout_13">
+                   <item>
+                    <widget class="QLabel" name="labelProgram">
+                     <property name="text">
+                      <string>Programme :</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="program">
+                     <property name="placeholderText">
+                      <string/>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>Enfant</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>Adult</string>
+                      </property>
+                     </item>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
                 <item>
@@ -1279,7 +1322,7 @@ background-color: #292C35;
                  <widget class="QWidget" name="subDurationW" native="true">
                   <layout class="QHBoxLayout" name="horizontalLayout_10">
                    <item>
-                    <widget class="QLabel" name="label_7">
+                    <widget class="QLabel" name="dureeMois">
                      <property name="text">
                       <string>Durée en mois :</string>
                      </property>
@@ -1306,6 +1349,36 @@ background-color: #292C35;
                      <property name="calendarPopup">
                       <bool>true</bool>
                      </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QWidget" name="widget_6" native="true">
+                  <layout class="QHBoxLayout" name="horizontalLayout_12">
+                   <item>
+                    <widget class="QLabel" name="paymentLabel">
+                     <property name="text">
+                      <string>Mode de paiement:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item alignment="Qt::AlignmentFlag::AlignRight">
+                    <widget class="QComboBox" name="paymentMethod">
+                     <property name="placeholderText">
+                      <string/>
+                     </property>
+                     <item>
+                      <property name="text">
+                       <string>Espèce</string>
+                      </property>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>chèque</string>
+                      </property>
+                     </item>
                     </widget>
                    </item>
                   </layout>
@@ -1403,7 +1476,6 @@ background-color: #292C35;
  <resources>
   <include location="../Qss/icons/_icons.qrc"/>
   <include location="../../../Modern_GUI_PyDracula_PySide6_or_PyQt6/resources.qrc"/>
-  <include location="../../../../../.designer/Qss/icons/_icons.qrc"/>
  </resources>
  <connections/>
 </ui>

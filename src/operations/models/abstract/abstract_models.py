@@ -38,7 +38,7 @@ class Model:
                     if isinstance(ui_field, QLineEdit):
                         field.value = ui_field.text()
                     elif isinstance(ui_field, QComboBox):
-                        field.value = ui_field.currentText()
+                        field.value = ui_field.currentIndex()
                     elif isinstance(ui_field, QCheckBox):
                         field.value = ui_field.isChecked()
                     elif isinstance(ui_field, QRadioButton):

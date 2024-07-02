@@ -6,17 +6,19 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>429</width>
-    <height>194</height>
+    <width>469</width>
+    <height>229</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">*{
+   <string notr="true">
+
+*{
 border:none;
-background-color:#27263c;
+background-color:#21252B;
 padding:0;
 margin:0;
 color: #FFFFFF;
@@ -27,9 +29,24 @@ padding-top:20px;
 }
 
 QLineEdit,QDateEdit,QComboBox,QSpinBox{
-background-color: #1b1b27;
+background-color: #292C35;
 padding: 5px 10px;
 border-radius: 5px;
+}
+
+
+QLineEdit {
+	border-radius: 5px;
+	border: 2px solid rgb(33, 37, 43);
+	padding-left: 10px;
+	selection-color: rgb(255, 255, 255);
+	selection-background-color: rgb(255, 121, 198);
+}
+QLineEdit:hover {
+	border: 2px solid rgb(64, 71, 88);
+}
+QLineEdit:focus {
+	border: 2px solid rgb(91, 101, 124);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -105,6 +122,23 @@ border-radius: 5px;
           </widget>
          </item>
         </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="paymentMethod">
+        <property name="placeholderText">
+         <string>Mode de paiement</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>Espèce</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Chèque</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>

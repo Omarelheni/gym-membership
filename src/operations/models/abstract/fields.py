@@ -65,3 +65,11 @@ class ImageField(FileField):
         image_path = os.path.join(self.destination, self.value)
 
         return show_label_pixmap(image_path, self.desired_ui_height, self.desired_ui_width,round)
+
+class IndexField(Field):
+    def __init__(self, ui_name='', database_name=None, database_type="TEXT", value=None, pk=False, ui_label='',
+                 choices=None):
+        super().__init__(ui_name, database_name, database_type, value, pk, ui_label)
+        if choices is None:
+            choices = {}
+        self.choices = choices

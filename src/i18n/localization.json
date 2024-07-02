@@ -6,14 +6,21 @@
     "name": "Name",
     "surname": "Surname",
     "email": "E-mail",
-    "address": "Address",
+    "cin": "CIN",
     "birth_date": "Date of Birth",
     "image": "Image",
     "telephone_number": "Telephone number",
     "subscription": "Subscription",
     "subscription_end_date": "Subscription end date",
-    "Actions": "Actions"
-
+    "Actions": "Actions",
+    "table_created_successfully": "Table created successfully!",
+    "error_creating_table": "Error in creating table!",
+    "failed_to_add_item": "Failed to add item",
+    "item_added_successfully": "Item added successfully",
+    "failed_to_update_item": "Failed to update item",
+    "item_updated_successfully": "Item updated successfully",
+    "failed_to_delete_item": "Failed to delete item",
+    "item_deleted_successfully": "Item deleted successfully"
   },
   "FR": {
     "member_updated": "Le membre a été modifié avec succès",
@@ -22,13 +29,21 @@
     "name": "Nom",
     "surname": "Prénom",
     "email": "E-mail",
-    "address": "Adresse",
+    "cin": "CIN",
     "birth_date": "Date de naissance",
     "image": "Image",
-    "telephone_number": "Numero de telephone",
+    "telephone_number": "Numéro de téléphone",
     "subscription": "Abonnement",
     "subscription_end_date": "Date de fin de l'abonnement",
-    "Actions": "Actions"
+    "Actions": "Actions",
+    "table_created_successfully": "Table créée avec succès!",
+    "error_creating_table": "Erreur lors de la création de la table!",
+    "failed_to_add_item": "Échec de l'ajout de l'élément",
+    "item_added_successfully": "Élément ajouté avec succès",
+    "failed_to_update_item": "Échec de la mise à jour de l'élément",
+    "item_updated_successfully": "Élément mis à jour avec succès",
+    "failed_to_delete_item": "Échec de la suppression de l'élément",
+    "item_deleted_successfully": "Élément supprimé avec succès"
   },
   "AR": {
     "member_updated": "تم تعديل العضو بنجاح",
@@ -37,13 +52,20 @@
     "name": "الاسم",
     "surname": "اللقب",
     "email": "البريد الإلكتروني",
-    "address": "العنوان",
+    "cin": "رقم الهوية",
     "birth_date": "تاريخ الميلاد",
     "image": "الصورة",
     "telephone_number": "رقم الهاتف",
     "subscription": "الاشتراك",
     "subscription_end_date": "تاريخ انتهاء الاشتراك",
-    "Actions": "أجراءات"
-
+    "Actions": "أجراءات",
+    "table_created_successfully": "تم إنشاء الجدول بنجاح!",
+    "error_creating_table": "خطأ في إنشاء الجدول!",
+    "failed_to_add_item": "فشل في إضافة العنصر",
+    "item_added_successfully": "تمت إضافة العنصر بنجاح",
+    "failed_to_update_item": "فشل في تحديث العنصر",
+    "item_updated_successfully": "تم تحديث العنصر بنجاح",
+    "failed_to_delete_item": "فشل في حذف العنصر",
+    "item_deleted_successfully": "تم حذف العنصر بنجاح"
   }
 }

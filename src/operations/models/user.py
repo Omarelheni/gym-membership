@@ -4,11 +4,16 @@ from PySide6.QtGui import Qt
 from PySide6.QtWidgets import QLabel, QWidget, QVBoxLayout
 
 from .abstract.abstract_models import Model
-from .abstract.fields import Field, FileField, ImageField
+from .abstract.fields import Field, FileField, ImageField, IndexField
 
 import re
 
-from ..utils import  show_label_pixmap, is_today_valid
+from ..utils import show_label_pixmap, is_today_valid
+
+PROGRAM_CHOICES = {
+    0: 'kids',
+    1: 'adults'
+}
 
 
 class User(Model):
@@ -20,8 +25,10 @@ class User(Model):
         self.last_name = Field("lastName", "LAST_NAME", "TEXT", ui_label="name")
         self.email = Field("email", "EMAIL", "TEXT", ui_label="email")
         self.phone_number = Field("phoneNb", "PHONE_NUMBER", "TEXT", ui_label="telephone_number")
-        self.address = Field("address", "ADDRESS", "TEXT", ui_label="address")
+        self.cin = Field("cin", "CIN", "TEXT", ui_label="cin")
         self.birth_date = Field("birthDate", "BIRTH_DATE", "DATE", ui_label="birth_date")
+        self.program = IndexField(ui_name='program', database_name='PROGRAM', database_type="INTEGER",
+                                  choices=PROGRAM_CHOICES)
         self.image_file = ImageField("imageLabel", "IMAGE", "images-users", "user_add_file_variable", ui_label="image")
 
     @property
@@ -49,7 +56,6 @@ class User(Model):
         except AttributeError:
             return None
 
-
     @property
     def is_subscription_valid(self):
         class FieldSubs:
@@ -67,7 +73,6 @@ class User(Model):
 
         is_valid = is_today_valid(self.last_subscription.end_date.value)
         return FieldSubs(is_valid)
-
 
     def validate_item_inputs(self):
         errors = []

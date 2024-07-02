@@ -9,7 +9,7 @@ from .subscription_operations import SubscriptionsOperation
 from ..models import User
 from ..models.subscription import Subscription
 from ..utils import show_popup
-from .renew_subs_interface import RenewSubDialog
+from src.renew_subs_interface import RenewSubDialog
 
 
 class UsersOperations(ModelOperationsUi):
@@ -17,9 +17,9 @@ class UsersOperations(ModelOperationsUi):
     ui_table_widget_name = 'tableWidgetUsers'
     form_slide_menu = 'rightMenu'
     ui_table_fields = ['image_file', 'is_subscription_valid', 'first_name', 'last_name', 'email', 'phone_number']
-    ui_add_form_columns = ['image_file', 'first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'address']
-    ui_details_fields = ['image_file','first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'address', 'subscription_end_date']
-    fields_to_update = ['first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'address', 'image_file']
+    ui_add_form_columns = ['image_file', 'first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin','program']
+    ui_details_fields = ['image_file','first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin','program','subscription_end_date']
+    fields_to_update = ['first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin', 'image_file','program']
     add_item_ui_btn = 'addUserBtn'
     close_form_slide_menu_button = 'closeRightMenu'
     open_form_slide_menu_button = 'showUserFormBtn'
@@ -47,6 +47,8 @@ class UsersOperations(ModelOperationsUi):
             if ui_field:
                 ui_field.setHidden(False)
         self.main.ui.labeldate.setHidden(False)
+        self.main.ui.dureeMois.setHidden(False)
+        self.main.ui.paymentLabel.setHidden(False)
         self.main.ui.addUserBtn.setText("Ajouter un membre")
 
     def update_item_ui(self, model_instance):
@@ -55,6 +57,9 @@ class UsersOperations(ModelOperationsUi):
             if ui_field:
                 ui_field.setHidden(True)
         self.main.ui.labeldate.setHidden(True)
+        self.main.ui.dureeMois.setHidden(True)
+        self.main.ui.paymentLabel.setHidden(True)
+
         super().update_item_ui(model_instance)
 
     def show_add_success_message(self):

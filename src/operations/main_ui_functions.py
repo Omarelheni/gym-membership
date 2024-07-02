@@ -1,5 +1,5 @@
 from PySide6.QtCore import QDate
-from PySide6.QtWidgets import QFileDialog
+from PySide6.QtWidgets import QFileDialog, QDateEdit
 
 from .services.subscription_operations import SubscriptionsOperation
 from .services.user_operations import UsersOperations
@@ -23,8 +23,29 @@ class UserUiFunction(GenericsUiFunction):
     def set_main_ui_functions(self):
         super().set_main_ui_functions()
         self.main.ui.startDate.setDate(QDate.currentDate())
+        self.main.ui.birthDate.setDate(QDate(2000, 1, 1))
+
         self.main.ui.subDurationW.setHidden(True)
         self.main.ui.subType.currentIndexChanged.connect(self.on_combobox_type_change)
+        self.main.ui.birthDate.dateChanged.connect(self.update_program_field)
+
+    def update_program_field(self):
+        # Get the selected birth date
+        birth_date = self.main.ui.birthDate.date()
+
+        # Get the current date
+        current_date = QDate.currentDate()
+
+        # Calculate the age
+        age = current_date.year() - birth_date.year()
+
+        # Check if the birth date has already occurred this year
+        if (current_date.month(), current_date.day()) < (birth_date.month(), birth_date.day()):
+            age -= 1
+
+        # Update the program field based on age
+        self.main.ui.program.setCurrentIndex(1 if age > 18 else 0)  # Adult if >18, else Child
+
 
     def on_combobox_type_change(self):
         if self.main.ui.subType.currentText() == "Autre":
