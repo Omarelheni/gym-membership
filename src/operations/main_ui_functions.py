@@ -5,7 +5,7 @@ from .services.subscription_operations import SubscriptionsOperation
 from .services.user_operations import UsersOperations
 import os
 
-from .utils import LocalizationManager
+from .utils import  LanguageManager
 
 
 class GenericsUiFunction:
@@ -28,18 +28,13 @@ class UserUiFunction(GenericsUiFunction):
         self.main.ui.subDurationW.setHidden(True)
         self.main.ui.subType.currentIndexChanged.connect(self.on_combobox_type_change)
         self.main.ui.birthDate.dateChanged.connect(self.update_program_field)
+        self.main.ui.membersFilter
 
     def update_program_field(self):
-        # Get the selected birth date
         birth_date = self.main.ui.birthDate.date()
-
-        # Get the current date
         current_date = QDate.currentDate()
-
-        # Calculate the age
         age = current_date.year() - birth_date.year()
 
-        # Check if the birth date has already occurred this year
         if (current_date.month(), current_date.day()) < (birth_date.month(), birth_date.day()):
             age -= 1
 
@@ -59,7 +54,6 @@ class AllUiFunctions:
 
     def __init__(self):
         self.ui_functions = [UserUiFunction()]
-        self.localization_manager = LocalizationManager("./i18n/localization.json")
 
     def change_language(self,text):
         if text == "ENG":
@@ -68,7 +62,9 @@ class AllUiFunctions:
             self.ui.retranslateUi(self)
         if text == "AR":
             self.ui.retranslateUiAr(self)
-        self.localization_manager.language = text
+
+        LanguageManager().set_language(text)
+
         for ui_function in self.ui_functions:
             ui_function.operation_instance.translate_table_columns()
 
@@ -77,6 +73,8 @@ class AllUiFunctions:
             ui_function.main = self
             ui_function.set_main_ui_functions()
         self.ui.LanguageBox.currentTextChanged.connect(self.change_language)
+        LanguageManager().set_language(self.ui.LanguageBox.currentText())
+
 
 
 

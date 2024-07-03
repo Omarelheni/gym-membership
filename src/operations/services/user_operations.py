@@ -2,7 +2,8 @@ import os
 
 from PySide6.QtCore import QSize
 from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import QFileDialog, QWidget, QHBoxLayout, QPushButton, QDialog, QDialogButtonBox, QLineEdit
+from PySide6.QtWidgets import QFileDialog, QWidget, QHBoxLayout, QPushButton, QDialog, QDialogButtonBox, QLineEdit, \
+    QComboBox
 
 from .basic_services.ui_generic_operations import ModelOperationsUi
 from .subscription_operations import SubscriptionsOperation
@@ -17,16 +18,17 @@ class UsersOperations(ModelOperationsUi):
     ui_table_widget_name = 'tableWidgetUsers'
     form_slide_menu = 'rightMenu'
     ui_table_fields = ['image_file', 'is_subscription_valid', 'first_name', 'last_name', 'email', 'phone_number']
-    ui_add_form_columns = ['image_file', 'first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin','program']
-    ui_details_fields = ['image_file','first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin','program','subscription_end_date']
-    fields_to_update = ['first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin', 'image_file','program']
+    ui_add_form_columns = ['image_file', 'first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin',
+                           'program']
+    ui_details_fields = ['image_file', 'first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin',
+                         'program', 'subscription_end_date']
+    fields_to_update = ['first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin', 'image_file',
+                        'program']
     add_item_ui_btn = 'addUserBtn'
     close_form_slide_menu_button = 'closeRightMenu'
     open_form_slide_menu_button = 'showUserFormBtn'
     update_button_label = "Modifier un membre"
-    column_table_width = {'email':200 ,'phone_number':180}
-    search_fields=['first_name','last_name']
-
+    column_table_width = {'email': 200, 'phone_number': 180}
 
     def __init__(self, main):
         super().__init__(main)
@@ -34,12 +36,31 @@ class UsersOperations(ModelOperationsUi):
         self.main.ui.imageBtn.clicked.connect(lambda: self.open_file_dialog(self.model_instance.image_file))
         self.subscription = Subscription()
         self.subscription_operation = SubscriptionsOperation()
-        self.search_value = ""
+        self.main.ui.searchUserBtn.clicked.connect(lambda: (self.search_items(), self.display_items()))
+        self.main.ui.membersFilter.currentIndexChanged.connect(lambda: (self.filter_program_items(), self.display_items()))
 
-        self.main.ui.searchUserBtn.clicked.connect(lambda: (self.update_search_value(), self.display_items()))
+    def filter_program_items(self):
+        self.items = self.get_items()
+        program_index = self.main.ui.membersFilter.currentIndex() - 1
+        if program_index in [0, 1]:
+            self.items = [item for item in self.items if item.program.value == program_index]
 
-    def update_search_value(self):
-        self.search_value = self.main.ui.searchUser.text()
+    def get_items(self):
+        items = super().get_items()
+        program_index = self.main.ui.membersFilter.currentIndex() - 1
+        if program_index in [0, 1]:
+            return [item for item in items if item.program.value == program_index]
+
+        return items
+
+    def search_items(self):
+        search_value = self.main.ui.searchUser.text().strip().lower()
+        if search_value:
+            self.items = [item for item in self.items if
+                          search_value in item.first_name.value.lower() or search_value in item.last_name.value.lower()]
+        else:
+            self.items = self.get_items()
+
     def clear_form(self):
         super().clear_form()
         for field in self.subscription.get_fields():
@@ -89,7 +110,8 @@ class UsersOperations(ModelOperationsUi):
 
             show_button = QPushButton("")
             icon = QIcon()
-            icon.addFile(u":/font_awesome/solid/icons/font_awesome/solid/circle-user.png", QSize(), QIcon.Normal, QIcon.Off)
+            icon.addFile(u":/font_awesome/solid/icons/font_awesome/solid/circle-user.png", QSize(), QIcon.Normal,
+                         QIcon.Off)
             show_button.setIcon(icon)
 
             delete_button = QPushButton("")
@@ -124,10 +146,11 @@ class UsersOperations(ModelOperationsUi):
         show_dialog = RenewSubDialog()
         show_dialog.setupUi(dlg)
         apply_button = show_dialog.buttonBox.button(QDialogButtonBox.Apply)
-        apply_button.clicked.connect(lambda _=None, id_member=instance.id.value,ui=show_dialog: self.apply_subscription(id_member,ui))
+        apply_button.clicked.connect(
+            lambda _=None, id_member=instance.id.value, ui=show_dialog: self.apply_subscription(id_member, ui))
         dlg.exec()
 
-    def apply_subscription(self,id_member,ui):
+    def apply_subscription(self, id_member, ui):
         if self.subscription_operation.add_subscription(ui, id_member):
             show_popup("L'abonnement a été appliqué avec succès", "success")
 

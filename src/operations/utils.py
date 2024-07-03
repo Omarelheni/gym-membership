@@ -1,29 +1,35 @@
 import json
 import random, string
-
+from pathlib import Path
+import os
 from PIL.ImageQt import QPixmap
 from PySide6.QtGui import Qt, QBrush, QPainter
 from PySide6.QtWidgets import QMessageBox, QLabel, QWidget, QVBoxLayout, QFrame
 
 from datetime import datetime
 
-from dateutil.relativedelta import relativedelta
+
+def load_localization_data():
+    file_path = os.path.join(os.getcwd(),'i18n','localization.json')
+    with open(file_path, 'r') as file:
+        return json.load(file)
 
 
+class LanguageManager:
+    _instance = None
 
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super(LanguageManager, cls).__new__(cls)
+            cls._instance.current_language = 'FR'
+            cls._instance.translation_data = load_localization_data()
+        return cls._instance
 
-class LocalizationManager:
-
-    def __init__(self, file_path):
-        self.language = "FR"
-        self.localization_data = self.load_localization_data(file_path)
-
-    def load_localization_data(self, file_path):
-        with open(file_path, 'r') as file:
-            return json.load(file)
+    def set_language(self, language):
+        self.current_language = language
 
     def get_translation(self, message_key):
-        return self.localization_data.get(self.language, {}).get(message_key, "")
+        return self.translation_data.get(self.current_language, {}).get(message_key, "")
 
 
 def is_today_valid(date_str2, date_format="%Y-%m-%d"):

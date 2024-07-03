@@ -28,7 +28,7 @@ class User(Model):
         self.cin = Field("cin", "CIN", "TEXT", ui_label="cin")
         self.birth_date = Field("birthDate", "BIRTH_DATE", "DATE", ui_label="birth_date")
         self.program = IndexField(ui_name='program', database_name='PROGRAM', database_type="INTEGER",
-                                  choices=PROGRAM_CHOICES)
+                                  choices=PROGRAM_CHOICES,ui_label='program')
         self.image_file = ImageField("imageLabel", "IMAGE", "images-users", "user_add_file_variable", ui_label="image")
 
     @property

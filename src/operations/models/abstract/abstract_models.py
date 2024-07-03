@@ -58,9 +58,7 @@ class Model:
             if isinstance(ui_field, QLineEdit):
                 ui_field.setText(field.value)
             elif isinstance(ui_field, QComboBox):
-                index = ui_field.findText(field.value)
-                if index >= 0:
-                    ui_field.setCurrentIndex(index)
+                ui_field.setCurrentIndex(field.value)
             elif isinstance(ui_field, QCheckBox):
                 ui_field.setChecked(bool(field.value))
             elif isinstance(ui_field, QTextEdit):

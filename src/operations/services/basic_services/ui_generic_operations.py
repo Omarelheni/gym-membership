@@ -5,8 +5,8 @@ from PySide6.QtWidgets import QTableWidgetItem, QWidget, QHBoxLayout, QPushButto
     QMessageBox, QLabel
 from .generic_operations import ModelOperations
 from ...models.abstract.fields import FileField, ImageField, Field
-from ...utils import show_popup
-from .show_dialog_interface import Ui_Dialog
+from ...utils import show_popup, LanguageManager
+from src.show_dialog_interface import Ui_Dialog
 from copy import copy, deepcopy
 
 
@@ -67,12 +67,12 @@ class ModelOperationsUi(ModelOperations, SlideMenuUi):
     add_item_ui_btn = ""
     update_button_label = ""
     column_table_width = {}
-    search_fields = []
 
     def __init__(self, main=None):
         self.main = main
         super().__init__()
         self.create_table()
+        self.items = self.get_items()
         self.display_items()
         if self.add_item_ui_btn:
             add_item_ui_btn = getattr(self.main.ui, self.add_item_ui_btn)
@@ -90,8 +90,9 @@ class ModelOperationsUi(ModelOperations, SlideMenuUi):
             self.main.ui.imageLabel.setText(f"Selected file: {file_name}")
 
     def display_items(self):
+        self.items = self.get_items()
         # Get the translation function from the localization manager
-        translate = self.main.localization_manager.get_translation
+        translate = LanguageManager().get_translation
 
         # Get the table widget from the UI using its name
         table_widget = getattr(self.main.ui, self.ui_table_widget_name, None)
@@ -99,13 +100,6 @@ class ModelOperationsUi(ModelOperations, SlideMenuUi):
         # If the table widget does not exist, exit the function
         if not table_widget:
             return
-
-        # Determine if a search value is provided, and get the relevant items
-        if self.search_value:
-            conditions = {field: self.search_value for field in self.search_fields}
-            rows_models = self.get_search_items(conditions, 'OR', contains=True)
-        else:
-            rows_models = self.get_items()
 
         # Determine the number of columns in the table
         table_length = len(self.ui_table_fields)
@@ -116,7 +110,6 @@ class ModelOperationsUi(ModelOperations, SlideMenuUi):
             for column in self.ui_table_fields
             if getattr(self.model_instance, column) is not None
         ]
-
         # Add an "Actions" column if required
         if self.ui_table_with_actions:
             table_length += 1
@@ -142,7 +135,7 @@ class ModelOperationsUi(ModelOperations, SlideMenuUi):
         table_widget.setRowCount(0)
 
         # Populate the table with items
-        for row_model in rows_models:
+        for row_model in self.items:
             # Add a new row to the table
             row_position = table_widget.rowCount()
             table_widget.setRowCount(row_position + 1)
@@ -159,7 +152,7 @@ class ModelOperationsUi(ModelOperations, SlideMenuUi):
 
                 # If no widget is provided, create a QLabel to display the value
                 if not widget:
-                    widget = QLabel(str(field.value))
+                    widget = QLabel(str(field.output))
                     widget.setAlignment(Qt.AlignCenter)  # Center align text
 
                 # Set the widget in the table cell
@@ -190,7 +183,7 @@ class ModelOperationsUi(ModelOperations, SlideMenuUi):
                 lambda _=None, row_instance=instance: self.delete_item_ui(row_instance))
 
     def show_item_ui(self, instance):
-        translate = self.main.localization_manager.get_translation
+        translate = LanguageManager().get_translation
 
         dlg = QDialog(self.main)
         dlg.setWindowTitle("Affichage")
@@ -205,7 +198,7 @@ class ModelOperationsUi(ModelOperations, SlideMenuUi):
                 continue
 
             if hasattr(field, 'ui_label'):
-                show_dialog.addFieldToWidget(field.ui_name, self.table_name, field.value, translate(field.ui_label))
+                show_dialog.addFieldToWidget(field.ui_name, self.table_name, field.output, translate(field.ui_label))
         dlg.exec()
 
     def update_item_ui(self, instance):
@@ -239,7 +232,7 @@ class ModelOperationsUi(ModelOperations, SlideMenuUi):
 
     def translate_table_columns(self):
         # Get the translation function from the localization manager
-        translate = self.main.localization_manager.get_translation
+        translate = LanguageManager().get_translation
 
         # Get the table widget from the UI using its name
         table_widget = getattr(self.main.ui, self.ui_table_widget_name, None)

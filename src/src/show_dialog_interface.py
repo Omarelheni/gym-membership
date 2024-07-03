@@ -26,7 +26,7 @@ class Ui_Dialog(object):
         Dialog.resize(484, 390)
         Dialog.setStyleSheet(u"*{\n"
 "border:none;\n"
-"background-color:#27263c;\n"
+"background-color:#21252B;\n"
 "padding:0;\n"
 "margin:0;\n"
 "color: #FFFFFF;\n"
@@ -37,7 +37,7 @@ class Ui_Dialog(object):
 "}\n"
 "\n"
 "QLineEdit,QDateEdit,QComboBox,QSpinBox{\n"
-"background-color: #1b1b27;\n"
+"background-color: #292C35;\n"
 "padding: 5px 10px;\n"
 "border-radius: 5px;\n"
 "}")
@@ -95,6 +95,7 @@ class Ui_Dialog(object):
 
             getattr(self,label_ui_name).setText(QCoreApplication.translate("Dialog", ui_label, None))
             getattr(self,text_ui_name).setText(QCoreApplication.translate("Dialog", value, None))
+
         elif type=="Image":
             print('hey inn ')
             self.verticalLayout_2.addWidget(widget, 0, Qt.AlignmentFlag.AlignTop)

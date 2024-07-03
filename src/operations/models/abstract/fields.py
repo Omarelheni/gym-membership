@@ -6,7 +6,7 @@ from PySide6.QtCore import QRect
 from PySide6.QtGui import QIcon, QPainter, QBrush, Qt, QPixmap
 from PySide6.QtWidgets import QLabel, QWidget, QVBoxLayout
 
-from ...utils import generate_random_string, show_label_pixmap
+from ...utils import generate_random_string, show_label_pixmap, LanguageManager
 
 
 class Field:
@@ -17,6 +17,10 @@ class Field:
         self.value = value
         self.pk = pk
         self.ui_label = ui_label
+
+    @property
+    def output(self):
+        return self.value
 
     def get_widget(self):
         pass
@@ -73,3 +77,8 @@ class IndexField(Field):
         if choices is None:
             choices = {}
         self.choices = choices
+
+    @property
+    def output(self):
+        return LanguageManager().get_translation(self.choices.get(self.value,''))
+
