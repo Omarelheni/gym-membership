@@ -41,7 +41,7 @@ class SlideMenuUi:
             button = getattr(self.main.ui, self.add_item_ui_btn)
             button.clicked.disconnect()
             button.clicked.connect(
-                lambda: self.add_item())
+                lambda: self.add_item_ui())
             button.setText("Add Item")
 
         self.model_instance.set_ui_values_free(self.main.ui)
@@ -62,11 +62,12 @@ class SlideMenuUi:
 class ModelOperationsUi(ModelOperations, SlideMenuUi):
     ui_table_widget_name = ""
     ui_table_with_actions = True
-    ui_table_fields = None
+    ui_table_fields = []
     ui_details_fields = []
     add_item_ui_btn = ""
     update_button_label = ""
     column_table_width = {}
+    errors_label = ""
 
     def __init__(self, main=None):
         self.main = main
@@ -74,10 +75,12 @@ class ModelOperationsUi(ModelOperations, SlideMenuUi):
         self.create_table()
         self.items = self.get_items()
         self.display_items()
-        if self.add_item_ui_btn:
+        if self.add_item_ui_btn and hasattr(self.main.ui, self.add_item_ui_btn):
             add_item_ui_btn = getattr(self.main.ui, self.add_item_ui_btn)
-            add_item_ui_btn.clicked.connect(
-                lambda: self.add_item())
+            add_item_ui_btn.clicked.connect(self.add_item_ui)
+
+    def add_item_ui(self):
+        pass
 
     def open_file_dialog(self, field_image):
         file_path, _ = QFileDialog.getOpenFileName(self.main, "Select File")

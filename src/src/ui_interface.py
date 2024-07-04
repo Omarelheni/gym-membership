@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfacelksnoN.ui'
+## Form generated from reading UI file 'interfacezaEZXI.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.0
 ##
@@ -23,8 +23,8 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QFrame,
 
 from Custom_Widgets.QCustomQStackedWidget import QCustomQStackedWidget
 from Custom_Widgets.QCustomSlideMenu import QCustomSlideMenu
-from . import resources_rc
 from . import _icons_rc
+from . import resources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -49,6 +49,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#showUserFormBtn{\n"
+"border-radius:10px;\n"
 "background-color: #21252A;\n"
 "}\n"
 "\n"
@@ -78,9 +79,9 @@ class Ui_MainWindow(object):
 "border-left: 3px solid #BC93FA;\n"
 "}\n"
 "\n"
-"QLineEdit,QDateEdit,QComboBox,QSpinBox{\n"
-"paddi"
-                        "ng: 5px 10px;\n"
+"QLineEdit,QDateEdit,QComb"
+                        "oBox,QSpinBox{\n"
+"padding: 5px 10px;\n"
 "border-radius: 5px;\n"
 "}\n"
 "\n"
@@ -114,8 +115,8 @@ class Ui_MainWindow(object):
 "# commercially, I recommend reading them on the official website:\n"
 "# https://doc.qt.io/qtforpython/licenses.html\n"
 "\n"
-"///////////////////////////////////////////////////////"
-                        "////////////////////////////////////////// */\n"
+"///////////////////////////////"
+                        "////////////////////////////////////////////////////////////////// */\n"
 "\n"
 "QWidget{\n"
 "	color: rgb(221, 221, 221);\n"
@@ -150,8 +151,8 @@ class Ui_MainWindow(object):
 "QTableWidget */\n"
 "QTableWidget {\n"
 "    color: rgba(255, 255, 255, 0.7);\n"
-"    alternate-background-color: #3d3d3d;  /* Alternate ro"
-                        "w color */\n"
+"    alternate-background-color: #"
+                        "3d3d3d;  /* Alternate row color */\n"
 "    gridline-color: rgba(255, 255, 255, 0.1);\n"
 "}\n"
 "QTableWidget::item {\n"
@@ -188,8 +189,8 @@ class Ui_MainWindow(object):
 "	border: 2px solid rgb(64, 71, 88);\n"
 "}\n"
 "QLineEdit:focus {\n"
-"	border: 2px solid rgb(91, 1"
-                        "01, 124);\n"
+"	bor"
+                        "der: 2px solid rgb(91, 101, 124);\n"
 "}\n"
 "\n"
 "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
@@ -224,9 +225,9 @@ class Ui_MainWindow(object):
 "	border-radius: 0px;\n"
 "}\n"
 "QScrollBar::handle:horizontal {\n"
-"    background: rgb(189, 147, 249);\n"
-"  "
-                        "  min-width: 25px;\n"
+"    background: rg"
+                        "b(189, 147, 249);\n"
+"    min-width: 25px;\n"
 "	border-radius: 4px\n"
 "}\n"
 "QScrollBar::add-line:horizontal {\n"
@@ -262,9 +263,9 @@ class Ui_MainWindow(object):
 "    margin: 21px 0 21px 0;\n"
 "	border-radius: 0px;\n"
 " }\n"
-" QScrollBar::handle:vertical {	\n"
-"	background: "
-                        "rgb(189, 147, 249);\n"
+" QScrollBar::handle:verti"
+                        "cal {	\n"
+"	background: rgb(189, 147, 249);\n"
 "    min-height: 25px;\n"
 "	border-radius: 4px\n"
 " }\n"
@@ -297,8 +298,8 @@ class Ui_MainWindow(object):
 "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
 "CheckBox */\n"
 "QCheckBox::indicator {\n"
-"    border: 3px solid rgb(52, 59, 7"
-                        "2);\n"
+"    border:"
+                        " 3px solid rgb(52, 59, 72);\n"
 "	width: 15px;\n"
 "	height: 15px;\n"
 "	border-radius: 10px;\n"
@@ -330,8 +331,8 @@ class Ui_MainWindow(object):
 "	border: 3px solid rgb(52, 59, 72);	\n"
 "}\n"
 "\n"
-"/* /////////////////////////////////////////////////////////////////////////////////////////////////"
-                        "\n"
+"/* /////////////////////////////////////////////////////////////////////////"
+                        "////////////////////////\n"
 "ComboBox */\n"
 "QComboBox{\n"
 "	border-radius: 5px;\n"
@@ -365,8 +366,8 @@ class Ui_MainWindow(object):
 "/* /////////////////////////////////////////////////////////////////////////////////////////////////\n"
 "Sliders */\n"
 "QSlider::groove:horizontal {\n"
-"    border-radius: 5p"
-                        "x;\n"
+""
+                        "    border-radius: 5px;\n"
 "    height: 10px;\n"
 "	margin: 0px;\n"
 "	background-color: rgb(52, 59, 72);\n"
@@ -406,9 +407,9 @@ class Ui_MainWindow(object):
 "    margin: 0px;\n"
 "	border-radius: 5px;\n"
 "}\n"
-"QSlider::handle:vertical:hover {\n"
-"    "
-                        "background-color: rgb(195, 155, 255);\n"
+"QSlider::handle:vert"
+                        "ical:hover {\n"
+"    background-color: rgb(195, 155, 255);\n"
 "}\n"
 "QSlider::handle:vertical:pressed {\n"
 "    background-color: rgb(255, 121, 198);\n"
@@ -698,6 +699,11 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_11.addWidget(self.searchUserBtn)
 
+        self.refreshUsers = QPushButton(self.searchUserBar)
+        self.refreshUsers.setObjectName(u"refreshUsers")
+
+        self.horizontalLayout_11.addWidget(self.refreshUsers)
+
 
         self.verticalLayout_11.addWidget(self.searchUserBar)
 
@@ -867,7 +873,7 @@ class Ui_MainWindow(object):
         self.imageBtn.setObjectName(u"imageBtn")
         self.imageBtn.setCursor(QCursor(Qt.PointingHandCursor))
         icon14 = QIcon()
-        icon14.addFile(u":/feather/icons/feather/image.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon14.addFile(u":/icons/images/icons/cil-image-plus.png", QSize(), QIcon.Normal, QIcon.Off)
         self.imageBtn.setIcon(icon14)
 
         self.horizontalLayout_7.addWidget(self.imageBtn)
@@ -1038,6 +1044,7 @@ class Ui_MainWindow(object):
         self.showUserFormBtn.setText(QCoreApplication.translate("MainWindow", u"Ajouter un membre", None))
         self.searchUser.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Recherche ..", None))
         self.searchUserBtn.setText("")
+        self.refreshUsers.setText("")
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Page profile", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Page settings", None))
         self.closeRightMenu.setText(QCoreApplication.translate("MainWindow", u"Fermer", None))
@@ -1079,6 +1086,7 @@ class Ui_MainWindow(object):
         self.controlErrorsUser.setText("")
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Copyright 2024", None))
     # retranslateUi
+
 
     def retranslateUiEng(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", "MainWindow", None))

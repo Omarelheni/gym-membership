@@ -1,6 +1,6 @@
 import os
 
-from PySide6.QtCore import QSize
+from PySide6.QtCore import QSize, QDate
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QFileDialog, QWidget, QHBoxLayout, QPushButton, QDialog, QDialogButtonBox, QLineEdit, \
     QComboBox
@@ -18,17 +18,15 @@ class UsersOperations(ModelOperationsUi):
     ui_table_widget_name = 'tableWidgetUsers'
     form_slide_menu = 'rightMenu'
     ui_table_fields = ['image_file', 'is_subscription_valid', 'first_name', 'last_name', 'email', 'phone_number']
-    ui_add_form_columns = ['image_file', 'first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin',
-                           'program']
-    ui_details_fields = ['image_file', 'first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin',
-                         'program', 'subscription_end_date']
-    fields_to_update = ['first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin', 'image_file',
-                        'program']
+    ui_add_form_columns = ['image_file', 'first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin', 'program']
+    ui_details_fields = ['image_file', 'first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin', 'program', 'subscription_end_date']
+    fields_to_update = ['first_name', 'last_name', 'email', 'phone_number', 'birth_date', 'cin', 'image_file', 'program']
     add_item_ui_btn = 'addUserBtn'
     close_form_slide_menu_button = 'closeRightMenu'
     open_form_slide_menu_button = 'showUserFormBtn'
     update_button_label = "Modifier un membre"
     column_table_width = {'email': 200, 'phone_number': 180}
+    errors_label = 'controlErrorsUser'
 
     def __init__(self, main):
         super().__init__(main)
@@ -38,6 +36,18 @@ class UsersOperations(ModelOperationsUi):
         self.subscription_operation = SubscriptionsOperation()
         self.main.ui.searchUserBtn.clicked.connect(lambda: (self.search_items(), self.display_items()))
         self.main.ui.membersFilter.currentIndexChanged.connect(lambda: (self.filter_program_items(), self.display_items()))
+        self.main.ui.birthDate.dateChanged.connect(self.update_program_field)
+
+    def update_program_field(self):
+        birth_date = self.main.ui.birthDate.date()
+        current_date = QDate.currentDate()
+        age = current_date.year() - birth_date.year()
+
+        if (current_date.month(), current_date.day()) < (birth_date.month(), birth_date.day()):
+            age -= 1
+
+        # Update the program field based on age
+        self.main.ui.program.setCurrentIndex(1 if age > 18 else 0)  # Adult if >18, else Child
 
     def filter_program_items(self):
         self.items = self.get_items()
@@ -89,10 +99,10 @@ class UsersOperations(ModelOperationsUi):
     def show_update_success_message(self):
         show_popup("Le membre a été modifié avec succès", "success")
 
-    def add_item(self):
-        last_id = super().add_item()
+    def add_item_ui(self):
+        ui = self.main.ui
+        last_id = self.add_item(ui)
         if last_id:
-            ui = self.main.ui
             if self.subscription_operation.add_subscription(ui, last_id):
                 show_popup("Le membre a été ajouté avec succès", "success")
                 self.display_items()

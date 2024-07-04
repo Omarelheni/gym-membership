@@ -223,10 +223,13 @@ class ModelOperations(SQLLiteFunctions):
     ui_add_form_columns = None
     fields_to_update = None
     main = None
+    errors_label = ""
 
-    def __init__(self):
+    def __init__(self, model_class=None):
         super().__init__()
-        self.model_instance = self.model_class()  # Create an instance of the model class when needed
+        if model_class:
+            self.model_class = model_class
+        self.model_instance = self.model_class() if self.model_class else None
 
     def create_table(self):
         self.create_table_sql(self.model_instance)
@@ -266,20 +269,24 @@ class ModelOperations(SQLLiteFunctions):
         return items
 
     def add_item(self, ui=None):
-        if ui is None:
-            ui = self.main.ui
+        print('ui ==>',ui)
+        if not ui:
+            show_popup("Failed to add item","error")
+            return
 
         self.model_instance.set_values_from_ui(ui=ui)
         # Perform validation checks
         errors = self.model_instance.validate_item_inputs()
+        error_label = getattr(ui,self.errors_label,None)
 
         if errors:
-            self.main.ui.controlErrorsUser.setText("\n".join(errors))
+            if error_label:
+                error_label.setText("\n".join(errors))
             show_popup("\n".join(errors), "error")
             return
         else:
-            if getattr(ui, 'controlErrorsUser', None):
-                ui.controlErrorsUser.setText("")
+            if error_label:
+                error_label.setText("")
 
         try:
             result = self.add_item_sql(self.model_instance, self.fields_to_update)
@@ -289,7 +296,7 @@ class ModelOperations(SQLLiteFunctions):
                 self.show_add_success_message()
                 return result
         except:
-            show_popup("Failed to add item")
+            show_popup("Failed to add item","error")
 
     def update_item(self):
         self.model_instance.set_values_from_ui(ui=self.main.ui)

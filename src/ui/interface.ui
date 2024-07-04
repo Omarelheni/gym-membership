@@ -32,6 +32,7 @@ background-color: #21252B;
 }
 
 #showUserFormBtn{
+border-radius:10px;
 background-color: #21252A;
 }
 
@@ -885,17 +886,17 @@ QCommandLinkButton:pressed {
                      <widget class="QComboBox" name="membersFilter">
                       <item>
                        <property name="text">
-                        <string>Les Membre</string>
-                       </property>
-                      </item>
-                      <item>
-                       <property name="text">
-                        <string>Les membres adultes</string>
+                        <string>Les membres</string>
                        </property>
                       </item>
                       <item>
                        <property name="text">
                         <string>Les membres enfants</string>
+                       </property>
+                      </item>
+                      <item>
+                       <property name="text">
+                        <string>Les membres adultes</string>
                        </property>
                       </item>
                      </widget>
@@ -950,6 +951,13 @@ QCommandLinkButton:pressed {
                       <property name="icon">
                        <iconset resource="../Qss/icons/_icons.qrc">
                         <normaloff>:/feather/icons/feather/search.png</normaloff>:/feather/icons/feather/search.png</iconset>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="refreshUsers">
+                      <property name="text">
+                       <string/>
                       </property>
                      </widget>
                     </item>
@@ -1265,8 +1273,8 @@ background-color: #292C35;
                       <string>Choisir Image</string>
                      </property>
                      <property name="icon">
-                      <iconset resource="../Qss/icons/_icons.qrc">
-                       <normaloff>:/feather/icons/feather/image.png</normaloff>:/feather/icons/feather/image.png</iconset>
+                      <iconset resource="../../../Modern_GUI_PyDracula_PySide6_or_PyQt6/resources.qrc">
+                       <normaloff>:/icons/images/icons/cil-image-plus.png</normaloff>:/icons/images/icons/cil-image-plus.png</iconset>
                      </property>
                     </widget>
                    </item>
@@ -1480,7 +1488,6 @@ background-color: #292C35;
  <resources>
   <include location="../Qss/icons/_icons.qrc"/>
   <include location="../../../Modern_GUI_PyDracula_PySide6_or_PyQt6/resources.qrc"/>
-  <include location="../../../../../.designer/Qss/icons/_icons.qrc"/>
  </resources>
  <connections/>
 </ui>
