@@ -8,10 +8,22 @@ from PySide6.QtWidgets import QMessageBox
 from ...models.abstract.fields import Field
 from ...models.abstract.foreign_key import ForeignKey
 from ...utils import show_popup
+import sys
+def get_database_path():
+    if getattr(sys, 'frozen', False):
+        # The application is running as a bundled executable
+        application_path = os.path.dirname(sys.executable)
+    else:
+        # The application is running in a normal Python environment
+        application_path = os.path.dirname(__file__)
+
+    db_file = os.path.abspath(os.path.join(application_path, 'database', 'gym_membership_db.db'))
+    print('db_file ==>',db_file)
+    return db_file
 
 
 class SQLLiteFunctions:
-    db_file = os.path.abspath(os.path.join(os.path.dirname(__file__), 'database/gym_membership_db.db'))
+    db_file = get_database_path()
 
     def create_connection(self):
         conn = None
@@ -23,8 +35,8 @@ class SQLLiteFunctions:
 
     def execute_function(self, sql_query, return_response=False, commit=False, values=None, fetch_last_inserted=False):
         if self.db_file:
-            conn = self.create_connection()
             try:
+                conn = self.create_connection()
                 c = conn.cursor()
                 if values:
                     resp = c.execute(sql_query, values)
