@@ -4,10 +4,10 @@ from ..models.subscription import Subscription
 from ..utils import show_popup
 
 
-class SubscriptionsOperation (ModelOperationsUi):
+class SubscriptionsOperation(ModelOperationsUi):
     model_class = Subscription
     form_slide_menu = 'rightMenu'
-    ui_add_form_columns = ['subscription_type','start_date',"member","duration","expired","end_date"]
+    ui_add_form_columns = ['subscription_type', 'start_date', "member", "duration", "expired", "end_date"]
 
     def show_add_success_message(self):
         pass
@@ -15,16 +15,16 @@ class SubscriptionsOperation (ModelOperationsUi):
     def display_items(self):
         pass
 
-    def add_subscription(self,ui,member_id):
+    def add_subscription(self, ui, member_id):
 
-        duration_map = {
-            "Abonnement mensuel": 1,
-            "Abonnement trimestriel": 3,
-            "Abonnement semestriel": 6,
-            "Abonnement annuel": 12,
-            "Autre": ui.subDuration.value() if ui.subType.currentText() == "Autre" else None
-        }
-        duration = duration_map.get(ui.subType.currentText(), None)
+        duration_map = [1,
+                        3,
+                        6,
+                        12,
+                        ui.subDuration.value() if ui.subType.currentText() == "Autre" else None
+                        ]
+
+        duration = duration_map[ui.subType.currentIndex()]
         if not duration:
             show_popup("Echec dans la durée du l'abonnement")
             return
@@ -39,5 +39,3 @@ class SubscriptionsOperation (ModelOperationsUi):
         if self.add_item(ui=ui):
             return True
         return False
-
-
