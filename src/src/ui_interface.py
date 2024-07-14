@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'interfacezaEZXI.ui'
+## Form generated from reading UI file 'interfacemxJrby.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.7.0
 ##
@@ -17,14 +17,14 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QComboBox, QDateEdit, QFrame,
     QHBoxLayout, QHeaderView, QLabel, QLineEdit,
-    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
-    QSpinBox, QTableWidget, QTableWidgetItem, QVBoxLayout,
-    QWidget)
+    QMainWindow, QPushButton, QScrollArea, QSizePolicy,
+    QSpacerItem, QSpinBox, QTableWidget, QTableWidgetItem,
+    QVBoxLayout, QWidget)
 
 from Custom_Widgets.QCustomQStackedWidget import QCustomQStackedWidget
 from Custom_Widgets.QCustomSlideMenu import QCustomSlideMenu
-from . import _icons_rc
 from . import resources_rc
+from . import _icons_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -749,17 +749,36 @@ class Ui_MainWindow(object):
 
         self.rightMenu = QCustomSlideMenu(self.mainBody)
         self.rightMenu.setObjectName(u"rightMenu")
-        self.rightMenu.setMinimumSize(QSize(350, 0))
+        self.rightMenu.setMinimumSize(QSize(500, 0))
         self.rightMenu.setMaximumSize(QSize(16777215, 16777215))
         self.verticalLayout_7 = QVBoxLayout(self.rightMenu)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
-        self.widget_2 = QWidget(self.rightMenu)
+        self.scrollArea = QScrollArea(self.rightMenu)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOn)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents_2 = QWidget()
+        self.scrollAreaWidgetContents_2.setObjectName(u"scrollAreaWidgetContents_2")
+        self.scrollAreaWidgetContents_2.setGeometry(QRect(0, 0, 536, 818))
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.scrollAreaWidgetContents_2.sizePolicy().hasHeightForWidth())
+        self.scrollAreaWidgetContents_2.setSizePolicy(sizePolicy1)
+        self.scrollAreaWidgetContents_2.setMinimumSize(QSize(0, 0))
+        self.verticalLayout_12 = QVBoxLayout(self.scrollAreaWidgetContents_2)
+        self.verticalLayout_12.setObjectName(u"verticalLayout_12")
+        self.widget_2 = QWidget(self.scrollAreaWidgetContents_2)
         self.widget_2.setObjectName(u"widget_2")
-        self.widget_2.setMinimumSize(QSize(300, 247))
+        sizePolicy1.setHeightForWidth(self.widget_2.sizePolicy().hasHeightForWidth())
+        self.widget_2.setSizePolicy(sizePolicy1)
+        self.widget_2.setMinimumSize(QSize(100, 800))
         self.verticalLayout_8 = QVBoxLayout(self.widget_2)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.widget_4 = QWidget(self.widget_2)
         self.widget_4.setObjectName(u"widget_4")
+        sizePolicy.setHeightForWidth(self.widget_4.sizePolicy().hasHeightForWidth())
+        self.widget_4.setSizePolicy(sizePolicy)
         self.widget_4.setStyleSheet(u"QPushButton {\n"
 "background-color:#292C35;\n"
 "border-radius: 10px;\n"
@@ -791,6 +810,12 @@ class Ui_MainWindow(object):
 
         self.frame_5 = QFrame(self.widget_2)
         self.frame_5.setObjectName(u"frame_5")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.frame_5.sizePolicy().hasHeightForWidth())
+        self.frame_5.setSizePolicy(sizePolicy2)
+        self.frame_5.setMinimumSize(QSize(0, 0))
         self.frame_5.setStyleSheet(u"QPushButton{\n"
 "padding: 5px 10px;\n"
 "border-radius: 5px;\n"
@@ -828,6 +853,7 @@ class Ui_MainWindow(object):
 
         self.widget_8 = QWidget(self.frame_5)
         self.widget_8.setObjectName(u"widget_8")
+        self.widget_8.setMinimumSize(QSize(0, 48))
         self.horizontalLayout_14 = QHBoxLayout(self.widget_8)
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
         self.labelBirthDate = QLabel(self.widget_8)
@@ -846,6 +872,7 @@ class Ui_MainWindow(object):
 
         self.widget_7 = QWidget(self.frame_5)
         self.widget_7.setObjectName(u"widget_7")
+        self.widget_7.setMinimumSize(QSize(0, 48))
         self.horizontalLayout_13 = QHBoxLayout(self.widget_7)
         self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
         self.labelProgram = QLabel(self.widget_7)
@@ -865,6 +892,7 @@ class Ui_MainWindow(object):
 
         self.imageFrame = QFrame(self.frame_5)
         self.imageFrame.setObjectName(u"imageFrame")
+        self.imageFrame.setMinimumSize(QSize(0, 50))
         self.imageFrame.setFrameShape(QFrame.Shape.StyledPanel)
         self.imageFrame.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_7 = QHBoxLayout(self.imageFrame)
@@ -880,6 +908,7 @@ class Ui_MainWindow(object):
 
         self.imageLabel = QLabel(self.imageFrame)
         self.imageLabel.setObjectName(u"imageLabel")
+        self.imageLabel.setMinimumSize(QSize(0, 0))
 
         self.horizontalLayout_7.addWidget(self.imageLabel)
 
@@ -906,6 +935,7 @@ class Ui_MainWindow(object):
 
         self.subDurationW = QWidget(self.frame_5)
         self.subDurationW.setObjectName(u"subDurationW")
+        self.subDurationW.setMinimumSize(QSize(0, 45))
         self.horizontalLayout_10 = QHBoxLayout(self.subDurationW)
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
         self.dureeMois = QLabel(self.subDurationW)
@@ -923,6 +953,7 @@ class Ui_MainWindow(object):
 
         self.widget_5 = QWidget(self.frame_5)
         self.widget_5.setObjectName(u"widget_5")
+        self.widget_5.setMinimumSize(QSize(0, 45))
         self.horizontalLayout_9 = QHBoxLayout(self.widget_5)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.labeldate = QLabel(self.widget_5)
@@ -941,6 +972,7 @@ class Ui_MainWindow(object):
 
         self.widget_6 = QWidget(self.frame_5)
         self.widget_6.setObjectName(u"widget_6")
+        self.widget_6.setMinimumSize(QSize(0, 45))
         self.horizontalLayout_12 = QHBoxLayout(self.widget_6)
         self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
         self.paymentLabel = QLabel(self.widget_6)
@@ -972,10 +1004,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.addUserBtn, 0, Qt.AlignmentFlag.AlignHCenter)
 
-
-        self.verticalLayout_7.addWidget(self.widget_2, 0, Qt.AlignmentFlag.AlignHCenter|Qt.AlignmentFlag.AlignTop)
-
-        self.controlErrorsUser = QLabel(self.rightMenu)
+        self.controlErrorsUser = QLabel(self.widget_2)
         self.controlErrorsUser.setObjectName(u"controlErrorsUser")
         self.controlErrorsUser.setStyleSheet(u"#controlErrorsUser{\n"
 "  text-align:center\n"
@@ -985,7 +1014,14 @@ class Ui_MainWindow(object):
         self.controlErrorsUser.setIndent(-1)
         self.controlErrorsUser.setOpenExternalLinks(False)
 
-        self.verticalLayout_7.addWidget(self.controlErrorsUser)
+        self.verticalLayout_8.addWidget(self.controlErrorsUser)
+
+
+        self.verticalLayout_12.addWidget(self.widget_2)
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents_2)
+
+        self.verticalLayout_7.addWidget(self.scrollArea)
 
 
         self.horizontalLayout_2.addWidget(self.rightMenu)
@@ -1086,6 +1122,7 @@ class Ui_MainWindow(object):
         self.controlErrorsUser.setText("")
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Copyright 2024", None))
     # retranslateUi
+
 
 
     def retranslateUiEng(self, MainWindow):

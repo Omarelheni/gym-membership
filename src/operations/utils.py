@@ -11,7 +11,7 @@ from datetime import datetime
 
 def load_localization_data():
     file_path = os.path.join(os.getcwd(),'i18n','localization.json')
-    with open(file_path, 'r') as file:
+    with open(file_path, 'r',encoding='utf-8') as file:
         return json.load(file)
 
 
