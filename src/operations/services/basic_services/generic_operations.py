@@ -334,6 +334,7 @@ class ModelOperations(SQLLiteFunctions):
     def delete_item(self, instance):
         result = self.delete_item_sql(instance)
         if result:
+            self.items = self.get_items()
             self.display_items()
             self.show_delete_success_message()
             return result

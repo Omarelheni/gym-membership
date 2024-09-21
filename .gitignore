@@ -2,3 +2,4 @@
 /src/operations/services/basic_services/database/gym_membership_db.db
 /src/build/
 /src/dist/
+/src/images-users/*
