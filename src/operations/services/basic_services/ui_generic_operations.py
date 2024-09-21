@@ -92,8 +92,8 @@ class ModelOperationsUi(ModelOperations, SlideMenuUi):
             # Update the label with the filename
             self.main.ui.imageLabel.setText(f"Selected file: {file_name}")
 
-    def display_items(self):
-        self.items = self.get_items()
+    def display_items(self,items=None):
+
         # Get the translation function from the localization manager
         translate = LanguageManager().get_translation
 

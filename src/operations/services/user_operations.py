@@ -37,6 +37,13 @@ class UsersOperations(ModelOperationsUi):
         self.main.ui.searchUserBtn.clicked.connect(lambda: (self.search_items(), self.display_items()))
         self.main.ui.membersFilter.currentIndexChanged.connect(lambda: (self.filter_program_items(), self.display_items()))
         self.main.ui.birthDate.dateChanged.connect(self.update_program_field)
+        self.main.ui.program.currentIndexChanged.connect(self.program_changed)
+
+    def program_changed(self,index):
+        if index == 0:
+            self.main.ui.cin.setHidden(True)
+        else:
+            self.main.ui.cin.setHidden(False)
 
     def update_program_field(self):
         birth_date = self.main.ui.birthDate.date()
@@ -68,6 +75,7 @@ class UsersOperations(ModelOperationsUi):
         if search_value:
             self.items = [item for item in self.items if
                           search_value in item.first_name.value.lower() or search_value in item.last_name.value.lower()]
+            self.display_items()
         else:
             self.items = self.get_items()
 
@@ -105,6 +113,7 @@ class UsersOperations(ModelOperationsUi):
         if last_id:
             if self.subscription_operation.add_subscription(ui, last_id):
                 show_popup("Le membre a été ajouté avec succès", "success")
+                self.items = self.get_items()
                 self.display_items()
 
     def define_actions(self, table_widget, row, column, instance):
